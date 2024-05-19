@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+        <link rel="stylesheet" href="/program/styles/base.css" />
+        <link rel="stylesheet" href="/program/styles/index.css" />
+        <link id="color-scheme" rel="stylesheet" href="/program/styles/dark.css" />
+
+        <title th:text="${'Soft Depot - ' + program.getName()}">Soft Depot - GAME_NAME</title>
+    </head>
+    <body>
+        <header>
+            <!-- форма поиска -->
+            <form method="get" id="search-form">
+                <div class="loupe"></div>
+                <input id="search" placeholder="Поиск..." />
+            </form>
+
+            <div class="header-buttons">
+                <!-- Кнопка "Домой" -->
+                <a class="main-button button" th:href="@{/}">
+                    <div class="logo"></div>
+                    <span class="store-name" title="SOFT DEPOT">SOFT DEPOT</span>
+                </a>
+
+                <div class="right-buttons-panel">
+                    <!-- Тема -->
+                    <button class="change-theme button" title="Сменить тему" onclick="change_theme()"></button>
+
+                    <!-- Корзина -->
+                    <button class="shopping-basket button" title="Корзина"></button>
+
+                    <!-- Профиль -->
+                    <button class="profile button" title="Профиль"></button>
+                </div>
+            </div>
+        </header>
+        <main>
+            <h1 class="game-name-big game-name" th:text="${program.getName()}">GAME_NAME</h1>
+            <div class="game-highlights">
+                <div class="videos-and-screenshots">
+                    <div class="screenshots-viewer">
+                        <img id="current-screenshot" src="images/sh01.jpg" />
+                    </div>
+                    <div class="screenshots-tape">
+                        <img class="screenshot-on-tape" src="images/sh01.jpg" onclick="change_current_screenshot.apply(this)" />
+                        <img class="screenshot-on-tape" src="images/sh02.jpg" onclick="change_current_screenshot.apply(this)" />
+                        <img class="screenshot-on-tape" src="images/sh03.jpg" onclick="change_current_screenshot.apply(this)" />
+                        <img class="screenshot-on-tape" src="images/sh04.jpg" onclick="change_current_screenshot.apply(this)" />
+                        <img class="screenshot-on-tape" src="images/sh05.jpg" onclick="change_current_screenshot.apply(this)" />
+                        <img class="screenshot-on-tape" src="images/sh06.jpg" onclick="change_current_screenshot.apply(this)" />
+                        <img class="screenshot-on-tape" src="images/sh07.jpg" onclick="change_current_screenshot.apply(this)" />
+                        <img class="screenshot-on-tape" src="images/sh08.jpg" onclick="change_current_screenshot.apply(this)" />
+                        <img class="screenshot-on-tape" src="images/sh09.jpg" onclick="change_current_screenshot.apply(this)" />
+                        <img class="screenshot-on-tape" src="images/sh10.jpg" onclick="change_current_screenshot.apply(this)" />
+                    </div>
+                </div>
+                <div class="header-and-short-description">
+                    <img class="header" src="images/header.jpg" />
+                    <div id="short-description" th:text="${program.getDescription()}">
+                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Corrupti, adipisci, assumenda laboriosam, incidunt velit repudiandae aspernatur sint beatae dolorem quasi rerum iure
+                        voluptate vel dolores maxime esse aperiam fugit voluptatum.
+                    </div>
+                    <div class="score-block">
+                        <span>Пользователи оценивают </span>
+                        <span class="game-name" th:text="${program.getName()}">GAME_NAME</span>
+                        <span> на </span>
+                        <span id="score" th:text="${program.getAverageEstimation()}">GAME_ESTIMATION</span>
+                        <span> баллов из 5.</span>
+                    </div>
+                </div>
+            </div>
+            <div id="get-product-block">
+                <span id="buy-invite">
+                    Приобрести
+                    <span class="game-name" th:text="${program.getName()}">GAME_NAME</span>
+                </span>
+                <div id="price-and-buy">
+                    <span id="price" th:text="${program.getPrice() + ' руб.'}"></span>
+                    <button id="buy-button">Добавить в корзину</button>
+                </div>
+            </div>
+            <h1 id="description-header">Об игре</h1>
+            <div id="big-description">
+                <span id="description-text" th:text="${program.getDescription()}">GAME_DESCRIPTION</span>
+            </div>
+        </main>
+        <footer>
+            <span>Курсовая работа студента группы 21ПИнж(б)РПиС Петрова Алексея<br />2024 г.</span>
+        </footer>
+
+        <script src="../../scripts/jquery-3.7.1.min.js"></script>
+        <script src="scripts/theme.js"></script>
+        <script src="scripts/game-highlights.js"></script>
+        <script src="../../scripts/game.js"></script>
+        <script src="../../cart/scripts/cart.js"></script>
+    </body>
+</html>
