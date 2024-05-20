@@ -52,7 +52,7 @@
 }
 
 .game-row:hover .price-and-buy {
-    border-left: 1px solid var(--border-color);
+    /*border-left: 1px solid var(--border-color);*/
 }
 
 .score {

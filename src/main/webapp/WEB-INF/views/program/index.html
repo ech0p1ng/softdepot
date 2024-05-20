@@ -78,7 +78,7 @@
                     <span class="game-name" th:text="${program.getName()}">GAME_NAME</span>
                 </span>
                 <div id="price-and-buy">
-                    <span id="price" th:text="${program.getPrice() + ' руб.'}"></span>
+                    <span id="price" th:text="${program.getPriceAsString()}"></span>
                     <button id="buy-button">Добавить в корзину</button>
                 </div>
             </div>

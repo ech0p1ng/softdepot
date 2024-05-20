@@ -65,6 +65,18 @@ public class Program {
         return price;
     }
 
+    public String getPriceAsString() {
+        if (getPrice().compareTo(BigDecimal.ZERO) > 0){
+            String priceStr = getPrice().toString() + " руб.";
+            priceStr = priceStr.replace(".00", "");
+            return priceStr;
+        }
+        else {
+            return "Бесплатно";
+        }
+
+    }
+
     public void setPrice(BigDecimal price) {
         this.price = price;
     }

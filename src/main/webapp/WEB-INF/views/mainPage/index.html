@@ -52,7 +52,7 @@
                     </a>
                     <div class="price-and-buy">
                         <span class="price">
-                            <span th:text="${program.getPrice()}">GAME_PRICE</span>
+                            <span th:text="${program.getPriceAsString()}">GAME_PRICE</span>
                         </span>
                         <button class="add-to-cart" style="z-index: 2;">
                             <span>Добавить в корзину</span>
@@ -100,4 +100,5 @@
 <!--    <script src="/mainPage/scripts/main.js"></script>-->
     <script src="/mainPage/cart/scripts/cart.js"></script>
     <script src="/mainPage/scripts/theme.js"></script>
+    <script src="/default/scripts/game-highlights.js"></script>
 </html>

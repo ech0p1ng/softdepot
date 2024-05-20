@@ -20,7 +20,8 @@ public class MainPageController {
     public String mainPage(Model model){
         List<Program> programs = programDAO.getAll();
         for (Program program : programs) {
-            System.out.println(program.getName());
+            float avgEstimation = programDAO.getAverageEstimation(program);
+            program.setAverageEstimation(avgEstimation);
         }
         model.addAttribute("programs", programs);
 
