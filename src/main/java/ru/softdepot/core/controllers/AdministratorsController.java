@@ -27,7 +27,7 @@ public class AdministratorsController {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return "users/admin";
+        return "users/admin/admin";
     }
 
 }

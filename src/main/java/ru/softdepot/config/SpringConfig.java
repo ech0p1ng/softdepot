@@ -84,5 +84,6 @@ public class SpringConfig implements WebMvcConfigurer {
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/program/styles/**").addResourceLocations("/WEB-INF/views/program/styles/");
+        registry.addResourceHandler("/mainPage/styles/**").addResourceLocations("/WEB-INF/views/mainPage/styles/");
     }
 }
