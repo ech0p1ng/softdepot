@@ -3,10 +3,10 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="stylesheet" href="/mainPage/styles/base.css" />
+        <link rel="stylesheet" href="/default/styles/base.css" />
         <link rel="stylesheet" href="/mainPage/styles/index.css" />
-        <link rel="stylesheet" href="/mainPage/cart/styles/cart.css" />
-        <link id="color-scheme" rel="stylesheet" href="/mainPage/styles/dark.css" />
+        <link rel="stylesheet" href="/default/cart/styles/cart.css" />
+        <link id="color-scheme" rel="stylesheet" href="/default/styles/dark.css" />
         <!-- <link rel="stylesheet" href="styles/dark.css" /> -->
         <title>Soft Depot</title>
     </head>
@@ -38,7 +38,30 @@
             </div>
         </header>
         <main>
-            <div id="games-list"></div>
+            <div id="games-list" th:each="program : ${programs}">
+
+                <div class="game-row" style="z-index: 1;">
+                    <img class="preview" th:src="${program.getLogoUrl()}">
+                    <a th:href="@{/program/id{id}(id=${program.getId()})}" target="_blank" class="description">
+                        <div>
+                            <span class="name" th:text="${program.getName()}">GAME_NAME</span>
+                            <br>
+                            <span class="tags">GAME_TAGS</span>
+                        </div>
+                        <span class="score" title="Оценка пользователей" th:text="${program.getAverageEstimation()}">GAME_ESTIMATION</span>
+                    </a>
+                    <div class="price-and-buy">
+                        <span class="price">
+                            <span th:text="${program.getPrice()}">GAME_PRICE</span>
+                        </span>
+                        <button class="add-to-cart" style="z-index: 2;">
+                            <span>Добавить в корзину</span>
+                        </button>
+                    </div>
+                </div>
+
+
+            </div>
             <!-- Корзина -->
             <div id="cart-bg">
                 <div id="cart-opened">
@@ -46,8 +69,9 @@
                         <span id="cart-title">Корзина</span>
                         <button id="cart-exit-button" class="exit-button button close-button"></button>
                     </div>
-                    <div id="cart-games-list">
-                        <!-- <div class="cart-game-row">
+                    <div id="cart-games-list" th:each="program : ${programs}">
+
+                        <div class="cart-game-row">
                             <img class="preview" src="games/BeamNG_drive/images/header.jpg" />
                             <a class="cart-game-description" href="games/BeamNG_drive/index.html">
                                 <span class="cart-game-title">BeamNG.drive</span>
@@ -56,7 +80,8 @@
                                 <span class="cart-game-price-title">400 руб.</span>
                                 <button class="cart-game-remove button">x</button>
                             </div>
-                        </div> -->
+                        </div>
+
                     </div>
                     <div id="cart-total-title">
                         <span>Итого</span>
@@ -70,8 +95,9 @@
         </footer>
     </body>
 
-    <script src="/mainPage/scripts/jquery-3.7.1.min.js"></script>
-    <script src="/mainPage/scripts/game.js"></script>
-    <script src="/mainPage/scripts/main.js"></script>
+    <script src="/default/scripts/jquery-3.7.1.min.js"></script>
+    <script src="/default/scripts/game.js"></script>
+<!--    <script src="/mainPage/scripts/main.js"></script>-->
     <script src="/mainPage/cart/scripts/cart.js"></script>
+    <script src="/mainPage/scripts/theme.js"></script>
 </html>
