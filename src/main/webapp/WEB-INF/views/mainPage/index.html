@@ -41,7 +41,7 @@
             <div id="games-list" th:each="program : ${programs}">
 
                 <div class="game-row" style="z-index: 1;">
-                    <img class="preview" th:src="${program.getLogoUrl()}">
+                    <img class="preview" th:src="${program.getHeaderUrl()}">
                     <a th:href="@{/program/id{id}(id=${program.getId()})}" target="_blank" class="description">
                         <div>
                             <span class="name" th:text="${program.getName()}">GAME_NAME</span>

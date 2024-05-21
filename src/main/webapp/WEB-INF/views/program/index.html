@@ -42,26 +42,23 @@
             <div class="game-highlights">
                 <div class="videos-and-screenshots">
                     <div class="screenshots-viewer">
-                        <img id="current-screenshot" src="images/sh01.jpg" />
+                        <img id="current-screenshot"
+                             th:src="${program.getScreenshotsUrl().get(0)}"
+                        />
                     </div>
                     <div class="screenshots-tape">
-                        <img class="screenshot-on-tape" src="images/sh01.jpg" onclick="change_current_screenshot.apply(this)" />
-                        <img class="screenshot-on-tape" src="images/sh02.jpg" onclick="change_current_screenshot.apply(this)" />
-                        <img class="screenshot-on-tape" src="images/sh03.jpg" onclick="change_current_screenshot.apply(this)" />
-                        <img class="screenshot-on-tape" src="images/sh04.jpg" onclick="change_current_screenshot.apply(this)" />
-                        <img class="screenshot-on-tape" src="images/sh05.jpg" onclick="change_current_screenshot.apply(this)" />
-                        <img class="screenshot-on-tape" src="images/sh06.jpg" onclick="change_current_screenshot.apply(this)" />
-                        <img class="screenshot-on-tape" src="images/sh07.jpg" onclick="change_current_screenshot.apply(this)" />
-                        <img class="screenshot-on-tape" src="images/sh08.jpg" onclick="change_current_screenshot.apply(this)" />
-                        <img class="screenshot-on-tape" src="images/sh09.jpg" onclick="change_current_screenshot.apply(this)" />
-                        <img class="screenshot-on-tape" src="images/sh10.jpg" onclick="change_current_screenshot.apply(this)" />
+                        <img class="screenshot-on-tape"
+                             th:each="screenshot : ${program.getScreenshotsUrl()}"
+                             th:src="${screenshot}"
+                             onclick="change_current_screenshot.apply(this)"
+                        />
                     </div>
                 </div>
+
                 <div class="header-and-short-description">
-                    <img class="header" src="images/header.jpg" />
-                    <div id="short-description" th:text="${program.getDescription()}">
-                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Corrupti, adipisci, assumenda laboriosam, incidunt velit repudiandae aspernatur sint beatae dolorem quasi rerum iure
-                        voluptate vel dolores maxime esse aperiam fugit voluptatum.
+                    <img class="header" th:src="${program.getHeaderUrl()}" />
+                    <div id="short-description" th:text="${program.getShortDescription()}">
+                        GAME_SHORT_DESCRIPTION
                     </div>
                     <div class="score-block">
                         <span>Пользователи оценивают </span>

@@ -14,7 +14,7 @@
 
 .game-row:hover {
     cursor: pointer;
-    background-color: var(--bg-no-opacity);
+    /*background-color: var(--bg-no-opacity);*/
 }
 
 .game-row .preview {

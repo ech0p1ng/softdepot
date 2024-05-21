@@ -127,21 +127,28 @@ public class ProgramDAO implements DAO<Program> {
                         resultSet.getInt("developer_id")
                 );
 
-                //Преобразование java.sql.Array в List<URL>
-                Array tempSqlArray = resultSet.getArray("screenshots_url");
-                String[] screenshotsUrlStrArr = (String[])tempSqlArray.getArray();
-                List<String> screenshotsUrlList = Arrays.stream(screenshotsUrlStrArr).toList();
 
                 program = new Program(resultSet.getInt("id"));
                 program.setName(resultSet.getString("program_name"));
                 program.setPrice(resultSet.getBigDecimal("price"));
                 program.setDescription(resultSet.getString("description"));
-                program.setLogoUrl(resultSet.getString("logo_url"));
                 program.setInstallerWindowsUrl(resultSet.getString("installer_windows_url"));
                 program.setInstallerLinuxUrl(resultSet.getString("installer_linux_url"));
                 program.setInstallerMacosUrl(resultSet.getString("installer_macos_url"));
                 program.setDeveloperId(resultSet.getInt("developer_id"));
+                program.setShortDescription(resultSet.getString("short_description"));
+
+                program.setAverageEstimation(getAverageEstimation(program));
+
+                //Преобразование java.sql.Array в List<URL>
+                Array tempSqlArray = resultSet.getArray("screenshots_url");
+                String[] screenshotsUrlStrArr = (String[])tempSqlArray.getArray();
+                List<String> screenshotsUrlList = Arrays.stream(screenshotsUrlStrArr).toList();
+//                program.setHeaderUrl(resultSet.getString("header_url"));
+                program.setLogoUrl(resultSet.getString("logo_url"));
+
                 program.setScreenshotsUrl(screenshotsUrlList);
+                program.setAverageEstimation(getAverageEstimation(program));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -155,7 +162,120 @@ public class ProgramDAO implements DAO<Program> {
         return program;
     }
 
-    //Добавление ключевого слова программе
+    public Program getByNameAndDeveloperId(String programName, int developerId) {
+        Program program = null;
+
+        PreparedStatement statement = null;
+        try {
+            statement = connection.prepareStatement(
+                    "SELECT * FROM program WHERE program_name=? AND developer_id=?"
+            );
+            statement.setString(1, programName);
+            statement.setInt(2, developerId);
+            ResultSet resultSet = statement.executeQuery();
+            if (resultSet.next()) {
+                //Преобразование java.sql.Array в List<URL>
+                Array tempSqlArray = resultSet.getArray("screenshots_url");
+                String[] screenshotsUrlStrArr = (String[])tempSqlArray.getArray();
+                List<String> screenshotsUrlList = Arrays.stream(screenshotsUrlStrArr).toList();
+
+                program = new Program(
+                        resultSet.getInt("id"),
+                        resultSet.getString("program_name"),
+                        resultSet.getBigDecimal("price"),
+                        resultSet.getString("description"),
+                        resultSet.getString("logo_url"),
+                        resultSet.getString("installer_windows_url"),
+                        resultSet.getString("installer_linux_url"),
+                        resultSet.getString("installer_macos_url"),
+                        screenshotsUrlList,
+                        resultSet.getInt("developer_id"),
+                        resultSet.getString("short_description"),
+                        resultSet.getString("header_url")
+                );
+
+                program.setAverageEstimation(getAverageEstimation(program));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return program;
+    }
+
+    public List<Program> getAll() {
+        List<Program> programs = new ArrayList<>();
+        try {
+            PreparedStatement statement = connection.prepareStatement(
+                    "SELECT * FROM program"
+            );
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                //Преобразование java.sql.Array в List<URL>
+                Array tempSqlArray = resultSet.getArray("screenshots_url");
+                String[] screenshotsUrlStrArr = (String[])tempSqlArray.getArray();
+                List<String> screenshotsUrlList = Arrays.stream(screenshotsUrlStrArr).toList();
+
+                Program program = new Program(
+                        resultSet.getInt("id"),
+                        resultSet.getString("program_name"),
+                        resultSet.getBigDecimal("price"),
+                        resultSet.getString("description"),
+                        resultSet.getString("logo_url"),
+                        resultSet.getString("installer_windows_url"),
+                        resultSet.getString("installer_linux_url"),
+                        resultSet.getString("installer_macos_url"),
+                        screenshotsUrlList,
+                        resultSet.getInt("developer_id"),
+                        resultSet.getString("short_description"),
+                        resultSet.getString("header_url")
+                );
+
+                program.setAverageEstimation(getAverageEstimation(program));
+                programs.add(program);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return programs;
+    }
+
+    public List<Program> getByName(String programName) {
+        List<Program> programs = new ArrayList<>();
+        try {
+            PreparedStatement statement = connection.prepareStatement(
+                    "SELECT * FROM program WHERE program_name=?"
+            );
+            statement.setString(1, programName);
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                //Преобразование java.sql.Array в List<URL>
+                Array tempSqlArray = resultSet.getArray("screenshots_url");
+                String[] screenshotsUrlStrArr = (String[])tempSqlArray.getArray();
+                List<String> screenshotsUrlList = Arrays.stream(screenshotsUrlStrArr).toList();
+
+                Program program = new Program(
+                        resultSet.getInt("id"),
+                        resultSet.getString("program_name"),
+                        resultSet.getBigDecimal("price"),
+                        resultSet.getString("description"),
+                        resultSet.getString("logo_url"),
+                        resultSet.getString("installer_windows_url"),
+                        resultSet.getString("installer_linux_url"),
+                        resultSet.getString("installer_macos_url"),
+                        screenshotsUrlList,
+                        resultSet.getInt("developer_id"),
+                        resultSet.getString("short_description"),
+                        resultSet.getString("header_url")
+                );
+                program.setAverageEstimation(getAverageEstimation(program));
+                programs.add(program);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return programs;
+    }
+
     public int addTag(int programId, int tagId, int degreeOfBelongingValue) throws Exception {
         if (!hasTag(programId, tagId)) {
             DegreeOfBelonging degreeOfBelongingNew = new DegreeOfBelonging();
@@ -172,7 +292,6 @@ public class ProgramDAO implements DAO<Program> {
         }
     }
 
-    //Удаление ключевого слова у программы
     public void removeTag(int programId, int tagId) throws Exception {
         Tag tag = tagDAO.getById(tagId);
         DegreeOfBelonging degreeOfBelonging = degreeOfBelongingDAO.get(tagId, programId);
@@ -183,7 +302,6 @@ public class ProgramDAO implements DAO<Program> {
         }
     }
 
-    //обновление степени принадлежности к тегу
     public void updateTag(int programId, int tagId, int degreeOfBelongingValue) throws Exception {
         Tag tag = tagDAO.getById(tagId);
         DegreeOfBelonging degreeOfBelonging = degreeOfBelongingDAO.get(tagId, programId);
@@ -194,26 +312,6 @@ public class ProgramDAO implements DAO<Program> {
             degreeOfBelongingNew.setDegreeOfBelongingValue(degreeOfBelongingValue);
             degreeOfBelongingDAO.update(degreeOfBelonging);
         }
-    }
-
-    public Program getByNameAndDeveloperId(String programName, int developerId) {
-        Program program = null;
-
-        PreparedStatement statement = null;
-        try {
-            statement = connection.prepareStatement(
-                    "SELECT * FROM program WHERE program_name=? AND developer_id=?"
-            );
-            statement.setString(1, programName);
-            statement.setInt(2, developerId);
-            ResultSet resultSet = statement.executeQuery();
-            if (resultSet.next()) {
-                program = new Program(resultSet.getInt("id"));
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return program;
     }
 
     public boolean hasTag(int programId, int tagId) {
@@ -268,75 +366,6 @@ public class ProgramDAO implements DAO<Program> {
         String msg = String.format("The program [name=%s, developer_id=%d] does not exist",
                 program.getName(), program.getDeveloperId());
         throw new Exception(msg);
-    }
-
-    public List<Program> getAll() {
-        List<Program> programs = new ArrayList<>();
-        try {
-            PreparedStatement statement = connection.prepareStatement(
-                    "SELECT * FROM program"
-            );
-            ResultSet resultSet = statement.executeQuery();
-            while (resultSet.next()) {
-                //Преобразование java.sql.Array в List<URL>
-                Array tempSqlArray = resultSet.getArray("screenshots_url");
-                String[] screenshotsUrlStrArr = (String[])tempSqlArray.getArray();
-                List<String> screenshotsUrlList = Arrays.stream(screenshotsUrlStrArr).toList();
-
-                Program program = new Program(
-                        resultSet.getInt("id"),
-                        resultSet.getString("program_name"),
-                        resultSet.getBigDecimal("price"),
-                        resultSet.getString("description"),
-                        resultSet.getString("logo_url"),
-                        resultSet.getString("installer_windows_url"),
-                        resultSet.getString("installer_linux_url"),
-                        resultSet.getString("installer_macos_url"),
-                        screenshotsUrlList,
-                        resultSet.getInt("developer_id")
-
-                );
-                programs.add(program);
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return programs;
-    }
-
-    public List<Program> getByName(String programName) {
-        List<Program> programs = new ArrayList<>();
-        try {
-            PreparedStatement statement = connection.prepareStatement(
-                    "SELECT * FROM program WHERE program_name=?"
-            );
-            statement.setString(1, programName);
-            ResultSet resultSet = statement.executeQuery();
-            while (resultSet.next()) {
-                //Преобразование java.sql.Array в List<URL>
-                Array tempSqlArray = resultSet.getArray("screenshots_url");
-                String[] screenshotsUrlStrArr = (String[])tempSqlArray.getArray();
-                List<String> screenshotsUrlList = Arrays.stream(screenshotsUrlStrArr).toList();
-
-                Program program = new Program(
-                        resultSet.getInt("id"),
-                        resultSet.getString("program_name"),
-                        resultSet.getBigDecimal("price"),
-                        resultSet.getString("description"),
-                        resultSet.getString("logo_url"),
-                        resultSet.getString("installer_windows_url"),
-                        resultSet.getString("installer_linux_url"),
-                        resultSet.getString("installer_macos_url"),
-                        screenshotsUrlList,
-                        resultSet.getInt("developer_id")
-
-                );
-                programs.add(program);
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return programs;
     }
 
     public List<Review> getAllReviews(Program program) {

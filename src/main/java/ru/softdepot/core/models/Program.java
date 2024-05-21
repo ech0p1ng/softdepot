@@ -15,10 +15,12 @@ public class Program {
     private String installerMacosUrl;
     private List<String> screenshotsUrl;
     private int developerId;
+    private String shortDescription;
+    private String headerUrl;
 
     private float averageEstimation;
 
-    public Program(int id, String name, BigDecimal price, String description, String logoUrl, String installerWindowsUrl, String installerLinuxUrl, String installerMacosUrl, List<String> screenshotsUrl, int developerId) {
+    public Program(int id, String name, BigDecimal price, String description, String logoUrl, String installerWindowsUrl, String installerLinuxUrl, String installerMacosUrl, List<String> screenshotsUrl, int developerId, String shortDescription, String headerUrl) {
         this.id = id;
         this.name = name;
         this.price = price;
@@ -29,21 +31,9 @@ public class Program {
         this.installerMacosUrl = installerMacosUrl;
         this.screenshotsUrl = screenshotsUrl;
         this.developerId = developerId;
+        this.shortDescription = shortDescription;
+        this.headerUrl = headerUrl;
     }
-
-    public Program(int developerId, String name, String description, BigDecimal price, String logoUrl, String installerWindowsUrl, String installerLinuxUrl, String installerMacosUrl, List<String> screenshotsUrl) {
-        this.developerId = developerId;
-        this.name = name;
-        this.description = description;
-        this.price = price;
-        this.logoUrl = logoUrl;
-        this.installerWindowsUrl = installerWindowsUrl;
-        this.installerLinuxUrl = installerLinuxUrl;
-        this.installerMacosUrl = installerMacosUrl;
-        this.screenshotsUrl = screenshotsUrl;
-    }
-
-    public Program(){}
 
     public Program(int id) {
         this.id = id;
@@ -122,7 +112,20 @@ public class Program {
     }
 
     public List<String> getScreenshotsUrl() {
-        return screenshotsUrl;
+//        return screenshotsUrl;
+        List<String> screenshots = Arrays.asList(
+                String.format("/program/id%d/screenshots/sh01.jpg", id),
+                String.format("/program/id%d/screenshots/sh02.jpg", id),
+                String.format("/program/id%d/screenshots/sh03.jpg", id),
+                String.format("/program/id%d/screenshots/sh04.jpg", id),
+                String.format("/program/id%d/screenshots/sh05.jpg", id),
+                String.format("/program/id%d/screenshots/sh06.jpg", id),
+                String.format("/program/id%d/screenshots/sh07.jpg", id),
+                String.format("/program/id%d/screenshots/sh08.jpg", id),
+                String.format("/program/id%d/screenshots/sh09.jpg", id),
+                String.format("/program/id%d/screenshots/sh10.jpg", id)
+        );
+        return screenshots;
     }
 
     public void setScreenshotsUrl(List<String> screenshotsUrl) {
@@ -148,4 +151,22 @@ public class Program {
     public void setAverageEstimation(float averageEstimation) {
         this.averageEstimation = averageEstimation;
     }
+
+    public String getShortDescription() {
+        return shortDescription;
+    }
+
+    public void setShortDescription(String shortDescription) {
+        this.shortDescription = shortDescription;
+    }
+
+    public String getHeaderUrl(){
+        return String.format("/program/id%d/header.jpg", id);
+    }
+
+
+
+//    public void setHeaderUrl(String headerUrl) {
+//        this.headerUrl = headerUrl;
+//    }
 }

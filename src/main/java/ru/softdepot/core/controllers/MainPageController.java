@@ -22,6 +22,7 @@ public class MainPageController {
         for (Program program : programs) {
             float avgEstimation = programDAO.getAverageEstimation(program);
             program.setAverageEstimation(avgEstimation);
+
         }
         model.addAttribute("programs", programs);
 
