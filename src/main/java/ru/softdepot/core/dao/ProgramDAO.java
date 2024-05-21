@@ -352,10 +352,6 @@ public class ProgramDAO implements DAO<Program> {
             tagList.add(tag);
         }
 
-        for (Tag tag : tagList) {
-            System.out.println(tag.getName());
-        }
-
         return tagList;
     }
 

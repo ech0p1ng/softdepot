@@ -19,11 +19,7 @@ public class MainPageController {
     @GetMapping("/")
     public String mainPage(Model model){
         List<Program> programs = programDAO.getAll();
-        for (Program program : programs) {
-//            float avgEstimation = programDAO.getAverageEstimation(program);
-//            program.setAverageEstimation(avgEstimation);
-            System.out.println(program.getTagsAsString());
-        }
+
         model.addAttribute("programs", programs);
 
         return "mainPage/index";

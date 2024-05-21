@@ -9,6 +9,7 @@ public class Review {
     private int estimation;
     private String reviewText;
     private OffsetDateTime dateTime;
+    private String programName;
 
     public Review(int id, int customerId, int programId, int estimation, String reviewText, OffsetDateTime dateTime) {
         this.id = id;
@@ -81,5 +82,13 @@ public class Review {
 
     public void setDateTime(OffsetDateTime dateTime) {
         this.dateTime = dateTime;
+    }
+
+    public String getProgramName() {
+        return programName;
+    }
+
+    public void setProgramName(String programName) {
+        this.programName = programName;
     }
 }

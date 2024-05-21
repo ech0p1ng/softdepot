@@ -28,8 +28,14 @@ public class CustomersController {
             List<Program> purchasedPrograms = customerDAO.getPurchasedPrograms(customer);
             List<Review> reviews = customerDAO.getAllReviewsByCustomer(customer);
 
+            for (Review review : reviews) {
+                Program program = purchasedPrograms.stream().filter(p -> p.getId() == review.getProgramId()).findFirst().get();
+                review.setProgramName(program.getName());
+            }
+
             model.addAttribute("customer", customer);
             model.addAttribute("purchasedPrograms", purchasedPrograms);
+            model.addAttribute("reviews", reviews);
             System.out.println(customer.getId());
         } catch (Exception e) {
             e.printStackTrace();
