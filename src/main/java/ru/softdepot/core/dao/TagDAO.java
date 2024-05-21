@@ -1,6 +1,8 @@
 package ru.softdepot.core.dao;
 
 import org.springframework.stereotype.Component;
+import ru.softdepot.core.models.DegreeOfBelonging;
+import ru.softdepot.core.models.Program;
 import ru.softdepot.core.models.Tag;
 
 import java.sql.*;

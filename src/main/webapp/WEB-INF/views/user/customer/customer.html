@@ -22,7 +22,7 @@
                 <!-- Кнопка "Домой" -->
                 <a class="main-button button" th:href="@{/}">
                     <div class="logo"></div>
-                    <span class="store-name" title="Главная страница">SOFT DEPOT</span>
+                    <span class="store-name" title="SOFT DEPOT">SOFT DEPOT</span>
                 </a>
 
                 <div class="right-buttons-panel">
@@ -46,7 +46,7 @@
                         <div>
                             <span class="name" th:text="${program.getName()}">GAME_NAME</span>
                             <br>
-                            <span class="tags" th:text="${program.getTagsAsString()}">GAME_TAGS</span>
+                            <span class="tags">GAME_TAGS</span>
                         </div>
                         <span class="score" title="Оценка пользователей" th:text="${program.getAverageEstimation()}">GAME_ESTIMATION</span>
                     </a>
@@ -91,7 +91,7 @@
             </div>
         </main>
         <footer>
-            <span>Курсовая работа студента группы 21ПИнж(б)РПиС Петрова Алексея<br />2024 г.</span>
+            <span>Лабораторная работа №3 студента группы 21ПИнж(б)РПиС Петрова Алексея<br />5.04.2024</span>
         </footer>
     </body>
 

@@ -113,6 +113,7 @@ public class ProgramDAO implements DAO<Program> {
         }
     }
 
+
     @Override
     public Program getById(int id) throws Exception {
         Program program = null;
@@ -123,32 +124,37 @@ public class ProgramDAO implements DAO<Program> {
             ResultSet resultSet = statement.executeQuery();
 
             if (resultSet.next()) {
-                Developer developer = developerDAO.getById(
-                        resultSet.getInt("developer_id")
-                );
-
-
-                program = new Program(resultSet.getInt("id"));
-                program.setName(resultSet.getString("program_name"));
-                program.setPrice(resultSet.getBigDecimal("price"));
-                program.setDescription(resultSet.getString("description"));
-                program.setInstallerWindowsUrl(resultSet.getString("installer_windows_url"));
-                program.setInstallerLinuxUrl(resultSet.getString("installer_linux_url"));
-                program.setInstallerMacosUrl(resultSet.getString("installer_macos_url"));
-                program.setDeveloperId(resultSet.getInt("developer_id"));
-                program.setShortDescription(resultSet.getString("short_description"));
-
-                program.setAverageEstimation(getAverageEstimation(program));
-
                 //Преобразование java.sql.Array в List<URL>
                 Array tempSqlArray = resultSet.getArray("screenshots_url");
                 String[] screenshotsUrlStrArr = (String[])tempSqlArray.getArray();
                 List<String> screenshotsUrlList = Arrays.stream(screenshotsUrlStrArr).toList();
-//                program.setHeaderUrl(resultSet.getString("header_url"));
-                program.setLogoUrl(resultSet.getString("logo_url"));
 
-                program.setScreenshotsUrl(screenshotsUrlList);
+                program = new Program(
+                        resultSet.getInt("id"),
+                        resultSet.getString("program_name"),
+                        resultSet.getBigDecimal("price"),
+                        resultSet.getString("description"),
+                        resultSet.getString("logo_url"),
+                        resultSet.getString("installer_windows_url"),
+                        resultSet.getString("installer_linux_url"),
+                        resultSet.getString("installer_macos_url"),
+                        screenshotsUrlList,
+                        resultSet.getInt("developer_id"),
+                        resultSet.getString("short_description"),
+                        getTags(resultSet.getInt("id"))
+                );
+
                 program.setAverageEstimation(getAverageEstimation(program));
+
+                //Преобразование java.sql.Array в List<URL>
+//                Array tempSqlArray = resultSet.getArray("screenshots_url");
+//                String[] screenshotsUrlStrArr = (String[])tempSqlArray.getArray();
+//                List<String> screenshotsUrlList = Arrays.stream(screenshotsUrlStrArr).toList();
+//                program.setHeaderUrl(resultSet.getString("header_url"));
+//                program.setLogoUrl(resultSet.getString("logo_url"));
+//
+//                program.setScreenshotsUrl(screenshotsUrlList);
+//                program.setAverageEstimation(getAverageEstimation(program));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -162,7 +168,7 @@ public class ProgramDAO implements DAO<Program> {
         return program;
     }
 
-    public Program getByNameAndDeveloperId(String programName, int developerId) {
+    public Program getByNameAndDeveloperId(String programName, int developerId) throws Exception {
         Program program = null;
 
         PreparedStatement statement = null;
@@ -191,15 +197,18 @@ public class ProgramDAO implements DAO<Program> {
                         screenshotsUrlList,
                         resultSet.getInt("developer_id"),
                         resultSet.getString("short_description"),
-                        resultSet.getString("header_url")
+                        getTags(resultSet.getInt("id"))
                 );
 
                 program.setAverageEstimation(getAverageEstimation(program));
+                return program;
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return program;
+        String msg = String.format("The program [name=%s, developer_id=%d] does not exist",
+                programName, developerId);
+        throw new Exception(msg);
     }
 
     public List<Program> getAll() {
@@ -227,9 +236,8 @@ public class ProgramDAO implements DAO<Program> {
                         screenshotsUrlList,
                         resultSet.getInt("developer_id"),
                         resultSet.getString("short_description"),
-                        resultSet.getString("header_url")
+                        getTags(resultSet.getInt("id"))
                 );
-
                 program.setAverageEstimation(getAverageEstimation(program));
                 programs.add(program);
             }
@@ -265,7 +273,7 @@ public class ProgramDAO implements DAO<Program> {
                         screenshotsUrlList,
                         resultSet.getInt("developer_id"),
                         resultSet.getString("short_description"),
-                        resultSet.getString("header_url")
+                        getTags(resultSet.getInt("id"))
                 );
                 program.setAverageEstimation(getAverageEstimation(program));
                 programs.add(program);
@@ -275,6 +283,7 @@ public class ProgramDAO implements DAO<Program> {
         }
         return programs;
     }
+
 
     public int addTag(int programId, int tagId, int degreeOfBelongingValue) throws Exception {
         if (!hasTag(programId, tagId)) {
@@ -294,7 +303,7 @@ public class ProgramDAO implements DAO<Program> {
 
     public void removeTag(int programId, int tagId) throws Exception {
         Tag tag = tagDAO.getById(tagId);
-        DegreeOfBelonging degreeOfBelonging = degreeOfBelongingDAO.get(tagId, programId);
+        DegreeOfBelonging degreeOfBelonging = degreeOfBelongingDAO.getByTagAndProgram(tagId, programId);
         if (degreeOfBelonging == null) {
             throw new Exception("The program does not have a degree of belonging to this tag");
         } else {
@@ -304,7 +313,7 @@ public class ProgramDAO implements DAO<Program> {
 
     public void updateTag(int programId, int tagId, int degreeOfBelongingValue) throws Exception {
         Tag tag = tagDAO.getById(tagId);
-        DegreeOfBelonging degreeOfBelonging = degreeOfBelongingDAO.get(tagId, programId);
+        DegreeOfBelonging degreeOfBelonging = degreeOfBelongingDAO.getByTagAndProgram(tagId, programId);
         if (degreeOfBelonging == null) {
             throw new Exception("The program does not have a degree of belonging to this tag");
         } else {
@@ -332,13 +341,32 @@ public class ProgramDAO implements DAO<Program> {
         return false;
     }
 
-    public boolean exists(String program_name, int developer_id) {
+    public List<Tag> getTags(int programId)  {
+        List<DegreeOfBelonging> degreeOfBelongingList = degreeOfBelongingDAO.getAllForProgram(programId);
+        List<Tag> tagList = new ArrayList<>();
+
+        for (DegreeOfBelonging degreeOfBelonging : degreeOfBelongingList) {
+            Tag tag = tagDAO.getById(degreeOfBelonging.getTagId());
+            tag.setDegreeOfBelonging(degreeOfBelonging.getDegreeOfBelongingValue());
+            tag.setProgramId(degreeOfBelonging.getProgramId());
+            tagList.add(tag);
+        }
+
+        for (Tag tag : tagList) {
+            System.out.println(tag.getName());
+        }
+
+        return tagList;
+    }
+
+
+    public boolean exists(String programName, int developerId) {
         try {
             PreparedStatement statement = connection.prepareStatement(
                     "SELECT * FROM program WHERE program_name=? AND developer_id=?"
             );
-            statement.setString(1, program_name);
-            statement.setInt(2, developer_id);
+            statement.setString(1, programName);
+            statement.setInt(2, developerId);
             ResultSet resultSet = statement.executeQuery();
             if (resultSet.next()) {
                 return true;
@@ -347,25 +375,6 @@ public class ProgramDAO implements DAO<Program> {
             e.printStackTrace();
         }
         return false;
-    }
-
-    public int getId(Program program) throws Exception {
-        try {
-            PreparedStatement statement = connection.prepareStatement(
-                    "SELECT * FROM program WHERE program_name=? AND developer_id=?"
-            );
-            statement.setString(1, program.getName());
-            statement.setInt(2, program.getDeveloperId());
-            ResultSet resultSet = statement.executeQuery();
-            if (resultSet.next()) {
-                return resultSet.getInt("id");
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        String msg = String.format("The program [name=%s, developer_id=%d] does not exist",
-                program.getName(), program.getDeveloperId());
-        throw new Exception(msg);
     }
 
     public List<Review> getAllReviews(Program program) {

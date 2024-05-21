@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="'Soft Depot - ' + ${customer.getName()}"></title>
+</head>
+<header>
+
+</header>
+<body>
+
+    <div th:each="program : ${purchasedPrograms}">
+        <span th:text="${program.getName()}">game_name</span>
+    </div>
+
+</body>
+<footer>
+
+</footer>
+</html>

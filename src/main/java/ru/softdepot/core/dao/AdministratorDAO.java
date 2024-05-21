@@ -198,7 +198,7 @@ public class AdministratorDAO implements DAO<Administrator> {
         return programDAO.getById(programId);
     }
 
-    public Program getProgramByNameAndDeveloperId(String name, int developerId) {
+    public Program getProgramByNameAndDeveloperId(String name, int developerId) throws Exception {
         return programDAO.getByNameAndDeveloperId(name, developerId);
     }
 

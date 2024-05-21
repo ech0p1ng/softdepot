@@ -7,6 +7,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import ru.softdepot.core.dao.CustomerDAO;
 import ru.softdepot.core.models.Customer;
+import ru.softdepot.core.models.Program;
+import ru.softdepot.core.models.Review;
+
+import java.util.List;
 
 @Controller
 @RequestMapping("/customer")
@@ -21,10 +25,16 @@ public class CustomersController {
     public String customerPublicPage(@PathVariable("id") int id, Model model) {
         try {
             Customer customer = customerDAO.getById(id);
+            List<Program> purchasedPrograms = customerDAO.getPurchasedPrograms(customer);
+            List<Review> reviews = customerDAO.getAllReviewsByCustomer(customer);
+
             model.addAttribute("customer", customer);
+            model.addAttribute("purchasedPrograms", purchasedPrograms);
+            System.out.println(customer.getId());
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return "users/customer/customer";
+//        return "user/customer/customer";
+        return "user/customer/temp";
     }
 }

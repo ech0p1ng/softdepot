@@ -4,19 +4,20 @@ public class DegreeOfBelonging {
     private int id;
     private int programId;
     private int tagId;
-    private int degreeOfBelongingValue;
+    private float degreeOfBelongingValue;
 
-    public DegreeOfBelonging(int id, int programId, int tagId, int degreeOfBelongingValue) {
+    public DegreeOfBelonging(int id, int programId, int tagId, float degreeOfBelongingValue) {
         this.id = id;
         this.programId = programId;
         this.tagId = tagId;
         this.setDegreeOfBelongingValue(degreeOfBelongingValue);
     }
-    public DegreeOfBelonging(int programId, int tagId, int degreeOfBelongingValue) {
-        this.programId = programId;
-        this.tagId = tagId;
-        this.setDegreeOfBelongingValue(degreeOfBelongingValue);
-    }
+
+//    public DegreeOfBelonging(int programId, int tagId, float degreeOfBelongingValue) {
+//        this.programId = programId;
+//        this.tagId = tagId;
+//        this.setDegreeOfBelongingValue(degreeOfBelongingValue);
+//    }
 
     public DegreeOfBelonging(int id) {
         this.id = id;
@@ -44,11 +45,11 @@ public class DegreeOfBelonging {
         this.tagId = tagId;
     }
 
-    public int getDegreeOfBelongingValue() {
+    public float getDegreeOfBelongingValue() {
         return degreeOfBelongingValue;
     }
 
-    public void setDegreeOfBelongingValue(int degreeValue) {
+    public void setDegreeOfBelongingValue(float degreeValue) {
         if (degreeValue >= 0 && degreeValue <= 10) {
             this.degreeOfBelongingValue = degreeValue;
         }

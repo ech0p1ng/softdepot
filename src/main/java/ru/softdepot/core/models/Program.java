@@ -1,6 +1,7 @@
 package ru.softdepot.core.models;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -17,10 +18,11 @@ public class Program {
     private int developerId;
     private String shortDescription;
     private String headerUrl;
+    private List<Tag> tags;
 
     private float averageEstimation;
 
-    public Program(int id, String name, BigDecimal price, String description, String logoUrl, String installerWindowsUrl, String installerLinuxUrl, String installerMacosUrl, List<String> screenshotsUrl, int developerId, String shortDescription, String headerUrl) {
+    public Program(int id, String name, BigDecimal price, String description, String logoUrl, String installerWindowsUrl, String installerLinuxUrl, String installerMacosUrl, List<String> screenshotsUrl, int developerId, String shortDescription, List<Tag> tags) {
         this.id = id;
         this.name = name;
         this.price = price;
@@ -32,7 +34,7 @@ public class Program {
         this.screenshotsUrl = screenshotsUrl;
         this.developerId = developerId;
         this.shortDescription = shortDescription;
-        this.headerUrl = headerUrl;
+        this.tags = tags;
     }
 
     public Program(int id) {
@@ -164,9 +166,22 @@ public class Program {
         return String.format("/program/id%d/header.jpg", id);
     }
 
+    public List<Tag> getTags() {
+        return tags;
+    }
 
+    public void setTags(List<Tag> tags) {
+        this.tags = tags;
+    }
 
-//    public void setHeaderUrl(String headerUrl) {
-//        this.headerUrl = headerUrl;
-//    }
+    public String getTagsAsString() {
+        List<String> tagNameList = new ArrayList<>();
+        if (tags == null)
+            return "";
+        for (Tag tag : tags) {
+            tagNameList.add(tag.getName());
+        }
+
+        return String.join(", ", tagNameList);
+    }
 }

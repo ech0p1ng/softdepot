@@ -2,8 +2,11 @@ package ru.softdepot.core.dao;
 
 import org.springframework.stereotype.Component;
 import ru.softdepot.core.models.DegreeOfBelonging;
+import ru.softdepot.core.models.Program;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Component
 public class DegreeOfBelongingDAO implements DAO<DegreeOfBelonging> {
@@ -112,7 +115,7 @@ public class DegreeOfBelongingDAO implements DAO<DegreeOfBelonging> {
         return degreeOfBelonging;
     }
 
-    public DegreeOfBelonging get(int tagId, int programId) {
+    public DegreeOfBelonging getByTagAndProgram(int tagId, int programId) {
         DegreeOfBelonging degreeOfBelonging = null;
 
         try {
@@ -123,7 +126,8 @@ public class DegreeOfBelongingDAO implements DAO<DegreeOfBelonging> {
             statement.setInt(2, programId);
             ResultSet resultSet = statement.executeQuery();
             if (resultSet.next()) {
-                degreeOfBelonging = new DegreeOfBelonging(resultSet.getInt("id"));
+                degreeOfBelonging = new DegreeOfBelonging(resultSet.getInt("id")
+                );
                 degreeOfBelonging.setProgramId(resultSet.getInt("program_id"));
                 degreeOfBelonging.setTagId(resultSet.getInt("tag_id"));
                 degreeOfBelonging.setDegreeOfBelongingValue(resultSet.getInt("degree_value"));
@@ -133,5 +137,30 @@ public class DegreeOfBelongingDAO implements DAO<DegreeOfBelonging> {
         }
 
         return degreeOfBelonging;
+    }
+
+    public List<DegreeOfBelonging> getAllForProgram(int id) {
+        List<DegreeOfBelonging> degreeOfBelongingList = new ArrayList<>();
+
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(
+                    "SELECT * FROM degree_of_belonging WHERE program_id=?"
+            );
+            preparedStatement.setInt(1, id);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                DegreeOfBelonging degreeOfBelonging = new DegreeOfBelonging(
+                        resultSet.getInt("id"),
+                        resultSet.getInt("program_id"),
+                        resultSet.getInt("tag_id"),
+                        resultSet.getFloat("degree_value")
+                );
+                degreeOfBelongingList.add(degreeOfBelonging);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return degreeOfBelongingList;
     }
 }
