@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title th:text="'Soft Depot - ' + ${customer.getName()}"></title>
+    <title th:text="'Soft Depot - ' + ${customer.getName()}">Soft Depot - CUSTOMER_NAME</title>
 </head>
 <header>
 
@@ -23,7 +23,7 @@
     <ul>
         <li>
             <a th:each="program : ${purchasedPrograms}"
-               th:src="@{/program/id{id}(id=${program.getId()})}"
+               th:href="@{/program/id{id}(id=${program.getId()})}"
             >
                 <span th:text="${program.getName()}">GAME_NAME</span>
             </a>
@@ -33,7 +33,9 @@
     <span>Отзывы</span>
     <ul>
         <li>
-            <a th:each="review : ${reviews}">
+            <a th:each="review : ${reviews}"
+               th:src="@{/program/id{id}(id=${review.getProgramId()})}"
+            >
                 <span th:text="${review.getProgramName()}">GAME_NAME</span>
                 <br/>
                 <span th:text="${review.getReviewText()}">REVIEW_TEXT</span>
@@ -41,6 +43,17 @@
                 <span th:text="${review.getEstimation()}">REVIEW_ESTIMATION</span>
                 <br/>
                 <span th:text="${review.getDateTime()}">REVIEW_DATE_TIME_UTC</span>
+            </a>
+        </li>
+    </ul>
+
+    <span>Корзина</span>
+    <ul>
+        <li>
+            <a th:each="program : ${programsInCart}"
+               th:src="@{/program/id{id}(id=${program.getId()})}"
+            >
+                <span th:text="${program.getName()}">GAME_NAME</span>
             </a>
         </li>
     </ul>

@@ -12,8 +12,8 @@ import java.util.List;
 public class AdministratorDAO implements DAO<Administrator> {
     private static Connection connection;
 
-    TagDAO tagDAO = new TagDAO();
-    ProgramDAO programDAO = new ProgramDAO();
+    private TagDAO tagDAO = new TagDAO();
+    private ProgramDAO programDAO = new ProgramDAO();
 
     static {
         try {
@@ -120,7 +120,7 @@ public class AdministratorDAO implements DAO<Administrator> {
 
         try {
             PreparedStatement statement = connection.prepareStatement(
-                    "SELECT * FROM administator WHERE login=? AND password=?"
+                    "SELECT * FROM administrator WHERE email=? AND password=?"
             );
             statement.setString(1, email);
             statement.setString(2, password);

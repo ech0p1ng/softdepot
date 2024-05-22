@@ -84,6 +84,13 @@ CREATE TABLE review(
 	review_text TEXT NOT NULL
 );
 
+--корзина
+CREATE TABLE cart (
+    id SERIAL PRIMARY KEY,
+    customer_id int NOT NULL REFERENCES customer(id) ON DELETE CASCADE,
+    program_id int NOT NULL REFERENCES program(id) ON DELETE CASCADE
+)
+
 --роли
 CREATE ROLE administrator_role WITH LOGIN PASSWORD '9QrlLHkwMJah3hNoMRlW' SUPERUSER;
 CREATE ROLE customer_role WITH LOGIN PASSWORD 'at7DcsAixTk4Eqs7zdp3' NOCREATEDB NOCREATEROLE NOBYPASSRLS;
@@ -94,6 +101,7 @@ CREATE ROLE unregistered_role WITH LOGIN PASSWORD 'WqQMglB97jPxKw7TCiFc'NOCREATE
 GRANT SELECT, INSERT, UPDATE, DELETE ON TABLE purchase TO customer_role;
 GRANT SELECT, INSERT, UPDATE, DELETE ON TABLE customer TO customer_role;
 GRANT SELECT, INSERT, UPDATE, DELETE ON TABLE review TO customer_role;
+GRANT SELECT, INSERT, UPDATE, DELETE ON TABLE cart TO customer_role;
 GRANT SELECT ON TABLE administrator TO customer_role;
 GRANT SELECT ON TABLE developer TO customer_role;
 GRANT SELECT ON TABLE program TO customer_role;

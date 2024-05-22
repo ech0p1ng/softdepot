@@ -122,14 +122,16 @@ public class DeveloperDAO implements DAO<Developer> {
         return developer;
     }
 
-    public Developer getByEmail(String email) throws Exception {
+    public Developer getByEmailAndPassword(String email, String password) throws Exception {
         Developer developer = null;
 
         try {
             PreparedStatement statement = connection.prepareStatement(
-                    "SELECT * FROM developer WHERE email=?"
+                    "SELECT * FROM developer WHERE email=? AND password=?"
             );
             statement.setString(1, email);
+            statement.setString(2, password);
+
             ResultSet resultSet = statement.executeQuery();
             if (resultSet.next()) {
                 developer = new Developer(
@@ -195,7 +197,7 @@ public class DeveloperDAO implements DAO<Developer> {
             ResultSet resultSet = statement.executeQuery();
             programs = new ArrayList<Program>();
             while (resultSet.next()) {
-                Program program = programDAO.getById(resultSet.getInt("program_id"));
+                Program program = programDAO.getById(resultSet.getInt("id"));
                 programs.add(program);
             }
         } catch (SQLException e) {

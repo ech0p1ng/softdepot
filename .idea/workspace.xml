@@ -41,10 +41,10 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="KubernetesApiPersistence"><![CDATA[{}]]></component>
-  <component name="KubernetesApiProvider"><![CDATA[{
-  "isMigrated": true
-}]]></component>
+  <component name="KubernetesApiPersistence">{}</component>
+  <component name="KubernetesApiProvider">{
+  &quot;isMigrated&quot;: true
+}</component>
   <component name="LogFilters">
     <option name="FILTER_ERRORS" value="false" />
     <option name="FILTER_WARNINGS" value="false" />
@@ -71,7 +71,7 @@
     "Tomcat Server.Tomcat 10.1.23.executor": "Run",
     "git-widget-placeholder": "master",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "D:/Проекты программирование/Мои проекты/Java/Spring MVC/softdepot/softdepot/src/main/webapp/WEB-INF/views/user/customer",
+    "last_opened_file_path": "D:/Проекты программирование/Мои проекты/Java/Spring/spring-learning3",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -88,6 +88,7 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Проекты программирование\Мои проекты\Java\Spring MVC\softdepot\softdepot\src\main\webapp\WEB-INF\views\user\developer" />
       <recent name="D:\Проекты программирование\Мои проекты\Java\Spring MVC\softdepot\softdepot\src\main\webapp\WEB-INF\views\user\customer" />
     </key>
   </component>
@@ -199,6 +200,8 @@
       <workItem from="1716288756691" duration="20000" />
       <workItem from="1716288783676" duration="190000" />
       <workItem from="1716288981177" duration="14145000" />
+      <workItem from="1716320028829" duration="568000" />
+      <workItem from="1716366988839" duration="22026000" />
     </task>
     <servers />
   </component>

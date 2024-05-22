@@ -12,9 +12,10 @@ import java.util.List;
 
 @Component
 public class CustomerDAO implements DAO<Customer> {
-    ReviewDAO reviewDAO = new ReviewDAO();
-    ProgramDAO programDAO = new ProgramDAO();
-    PurchaseDAO purchaseDAO = new PurchaseDAO();
+    private ReviewDAO reviewDAO = new ReviewDAO();
+    private ProgramDAO programDAO = new ProgramDAO();
+    private PurchaseDAO purchaseDAO = new PurchaseDAO();
+    private CartDAO cartDAO = new CartDAO();
 
     private static Connection connection;
 
@@ -178,7 +179,7 @@ public class CustomerDAO implements DAO<Customer> {
 
         try {
             PreparedStatement statement = connection.prepareStatement(
-                    "SELECT * FROM customer WHERE login=? AND password=?"
+                    "SELECT * FROM customer WHERE email=? AND password=?"
             );
             statement.setString(1, email);
             statement.setString(2, password);
@@ -359,5 +360,18 @@ public class CustomerDAO implements DAO<Customer> {
                     money, customer.getBalance());
             throw new Exception(msg);
         }
+    }
+
+
+    public List<Program> getProgramsInCart(Customer customer) {
+        return cartDAO.getPrograms(customer.getId());
+    }
+
+    public void addProgram(Customer customer, Program program) {
+        cartDAO.addProgram(customer.getId(), program.getId());
+    }
+
+    public void deleteProgram(Customer customer, Program program) {
+        cartDAO.deleteProgram(customer.getId(), program.getId());
     }
 }

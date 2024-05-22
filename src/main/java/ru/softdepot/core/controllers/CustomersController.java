@@ -15,11 +15,7 @@ import java.util.List;
 @Controller
 @RequestMapping("/customer")
 public class CustomersController {
-    CustomerDAO customerDAO;
-
-    public CustomersController() {
-        customerDAO = new CustomerDAO();
-    }
+    CustomerDAO customerDAO = new CustomerDAO();
 
     @GetMapping("/id{id}")
     public String customerPublicPage(@PathVariable("id") int id, Model model) {
@@ -27,6 +23,7 @@ public class CustomersController {
             Customer customer = customerDAO.getById(id);
             List<Program> purchasedPrograms = customerDAO.getPurchasedPrograms(customer);
             List<Review> reviews = customerDAO.getAllReviewsByCustomer(customer);
+            List<Program> programsInCart = customerDAO.getProgramsInCart(customer);
 
             for (Review review : reviews) {
                 Program program = purchasedPrograms.stream().filter(p -> p.getId() == review.getProgramId()).findFirst().get();
@@ -36,11 +33,11 @@ public class CustomersController {
             model.addAttribute("customer", customer);
             model.addAttribute("purchasedPrograms", purchasedPrograms);
             model.addAttribute("reviews", reviews);
-            System.out.println(customer.getId());
+            model.addAttribute("programsInCart", programsInCart);
         } catch (Exception e) {
             e.printStackTrace();
         }
-//        return "user/customer/customer";
+//        return "user/customer/index";
         return "user/customer/temp";
     }
 }

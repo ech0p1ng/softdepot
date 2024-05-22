@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${'Soft Depot - ' + developer.getName()}">Soft Depot - DEVELOPER_NAME</title>
+</head>
+<header>
+    
+</header>
+<body>
+    <span th:text="'Имя: ' + ${developer.getName()}">DEVELOPER_NAME</span>
+    <br/>
+    <span th:text="'Логин: ' + ${developer.getEmail()}">DEVELOPER_EMAIL</span>
+    <br/>
+    <span th:text="'Пароль: ' + ${developer.getPassword()}">DEVELOPER_PASSWORD</span>
+    <br/>
+    <span th:text="'URL аватарки: ' + ${developer.getProfileImgUrl()}">DEVELOPER_PROFILE_IMG_URL</span>
+    <br/>
+
+    <span>Добавленные программы</span>
+    <ul>
+        <li>
+            <a th:each="program : ${programs}"
+               th:href="@{/program/id{id}(id=${program.getId()})}"
+            >
+                <span th:text="${program.getName()}"></span>
+            </a>
+        </li>
+    </ul>
+</body>
+</html>
