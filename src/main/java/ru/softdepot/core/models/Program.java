@@ -1,5 +1,6 @@
 package ru.softdepot.core.models;
 
+import java.io.File;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -9,32 +10,46 @@ public class Program {
     private int id;
     private String name;
     private BigDecimal price;
-    private String description;
-    private String logoUrl;
-    private String installerWindowsUrl;
-    private String installerLinuxUrl;
-    private String installerMacosUrl;
-    private List<String> screenshotsUrl;
+    private String fullDescription;
     private int developerId;
     private String shortDescription;
-    private String headerUrl;
     private List<Tag> tags;
 
     private float averageEstimation;
+    private String filesPath;
+    private String nameForPath;
 
-    public Program(int id, String name, BigDecimal price, String description, String logoUrl, String installerWindowsUrl, String installerLinuxUrl, String installerMacosUrl, List<String> screenshotsUrl, int developerId, String shortDescription, List<Tag> tags) {
+    public Program(int id, String name, BigDecimal price, String fullDescription,
+                   int developerId, String shortDescription, List<Tag> tags) {
         this.id = id;
-        this.name = name;
         this.price = price;
-        this.description = description;
-        this.logoUrl = logoUrl;
-        this.installerWindowsUrl = installerWindowsUrl;
-        this.installerLinuxUrl = installerLinuxUrl;
-        this.installerMacosUrl = installerMacosUrl;
-        this.screenshotsUrl = screenshotsUrl;
+        this.fullDescription = fullDescription;
         this.developerId = developerId;
         this.shortDescription = shortDescription;
         this.tags = tags;
+        this.filesPath = "/program/id" + id;
+        setName(name);
+    }
+
+    public Program(String name, BigDecimal price, String description,
+                   int developerId, String shortDescription, List<Tag> tags) {
+        this.price = price;
+        this.fullDescription = description;
+        this.developerId = developerId;
+        this.shortDescription = shortDescription;
+        this.tags = tags;
+        this.filesPath = "/program/id" + id;
+        setName(name);
+    }
+
+    public Program(String name, BigDecimal price, String description,
+                   int developerId, String shortDescription) {
+        this.price = price;
+        this.fullDescription = description;
+        this.developerId = developerId;
+        this.shortDescription = shortDescription;
+        this.filesPath = "/program/id" + id;
+        setName(name);
     }
 
     public Program(int id) {
@@ -51,6 +66,7 @@ public class Program {
 
     public void setName(String name) {
         this.name = name;
+        this.nameForPath = name.replaceAll(" ", "_");
     }
 
     public BigDecimal getPrice() {
@@ -73,69 +89,12 @@ public class Program {
         this.price = price;
     }
 
-    public String getDescription() {
-        return description;
+    public String getFullDescription() {
+        return fullDescription;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public String getLogoUrl() {
-        return logoUrl;
-    }
-
-    public void setLogoUrl(String logoUrl) {
-        this.logoUrl = logoUrl;
-    }
-
-    public String getInstallerWindowsUrl() {
-        return installerWindowsUrl;
-    }
-
-    public void setInstallerWindowsUrl(String installerWindowsUrl) {
-        this.installerWindowsUrl = installerWindowsUrl;
-    }
-
-    public String getInstallerLinuxUrl() {
-        return installerLinuxUrl;
-    }
-
-    public void setInstallerLinuxUrl(String installerLinuxUrl) {
-        this.installerLinuxUrl = installerLinuxUrl;
-    }
-
-    public String getInstallerMacosUrl() {
-        return installerMacosUrl;
-    }
-
-    public void setInstallerMacosUrl(String installerMacosUrl) {
-        this.installerMacosUrl = installerMacosUrl;
-    }
-
-    public List<String> getScreenshotsUrl() {
-//        return screenshotsUrl;
-        List<String> screenshots = Arrays.asList(
-                String.format("/program/id%d/screenshots/sh01.jpg", id),
-                String.format("/program/id%d/screenshots/sh02.jpg", id),
-                String.format("/program/id%d/screenshots/sh03.jpg", id),
-                String.format("/program/id%d/screenshots/sh04.jpg", id),
-                String.format("/program/id%d/screenshots/sh05.jpg", id),
-                String.format("/program/id%d/screenshots/sh06.jpg", id),
-                String.format("/program/id%d/screenshots/sh07.jpg", id),
-                String.format("/program/id%d/screenshots/sh08.jpg", id),
-                String.format("/program/id%d/screenshots/sh09.jpg", id),
-                String.format("/program/id%d/screenshots/sh10.jpg", id)
-        );
-        return screenshots;
-    }
-
-    public void setScreenshotsUrl(List<String> screenshotsUrl) {
-        this.screenshotsUrl = screenshotsUrl;
-    }
-
-    public void setScreenshotsUrl(String... screenshotsUrl) {
-        this.screenshotsUrl = Arrays.stream(screenshotsUrl).toList();
+    public void setFullDescription(String fullDescription) {
+        this.fullDescription = fullDescription;
     }
 
     public int getDeveloperId() {
@@ -162,10 +121,6 @@ public class Program {
         this.shortDescription = shortDescription;
     }
 
-    public String getHeaderUrl(){
-        return String.format("/program/id%d/header.jpg", id);
-    }
-
     public List<Tag> getTags() {
         return tags;
     }
@@ -183,5 +138,66 @@ public class Program {
         }
 
         return String.join(", ", tagNameList);
+    }
+
+    public String getNameForPath() {
+        return nameForPath;
+    }
+
+
+    public String getLogoUrl() {
+        return filesPath + "/logo.png";
+    }
+
+    public String getInstallerWindowsUrl() {
+        String path = filesPath + "/installers/win";
+
+        File dir = new File(path);
+        if (dir.isDirectory()) {
+            File[] files = dir.listFiles();
+            return files[0].getAbsolutePath();
+        }
+        return null;
+    }
+
+    public String getInstallerLinuxUrl() {
+        String path = filesPath + "/installers/linux";
+
+        File dir = new File(path);
+        if (dir.isDirectory()) {
+            File[] files = dir.listFiles();
+            return files[0].getAbsolutePath();
+        }
+        return null;
+    }
+
+    public String getInstallerMacosUrl() {
+        String path = filesPath + "/installers/macos";
+
+        File dir = new File(path);
+        if (dir.isDirectory()) {
+            File[] files = dir.listFiles();
+            return files[0].getAbsolutePath();
+        }
+        return null;
+    }
+
+    public List<String> getScreenshotsUrl() {
+        return new ArrayList<String>(Arrays.asList(
+                String.format("/program/id%d/screenshots/sh01.jpg", getId()),
+                String.format("/program/id%d/screenshots/sh02.jpg", getId()),
+                String.format("/program/id%d/screenshots/sh03.jpg", getId()),
+                String.format("/program/id%d/screenshots/sh04.jpg", getId()),
+                String.format("/program/id%d/screenshots/sh05.jpg", getId()),
+                String.format("/program/id%d/screenshots/sh06.jpg", getId()),
+                String.format("/program/id%d/screenshots/sh07.jpg", getId()),
+                String.format("/program/id%d/screenshots/sh08.jpg", getId()),
+                String.format("/program/id%d/screenshots/sh09.jpg", getId()),
+                String.format("/program/id%d/screenshots/sh10.jpg", getId())
+        ));
+    }
+
+    public String getHeaderUrl() {
+        return filesPath + "/header.jpg";
     }
 }

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Soft Depot - Регистрация</title>
+</head>
+<body>
+    <form th:method="POST"
+          th:action="@{/registration/check}"
+    >
+        <p>
+            <label for="username">Имя пользователя:</label>
+            <input type="username" id="username" name="username">
+            <br/>
+            <label for="email">E-mail:</label>
+            <input type="email" id="email" name="email">
+            <br/>
+            <label for="password">Пароль:</label>
+            <input type="password" id="password" name="password">
+            <br/>
+            <label>
+                <input type="radio" name="userType" value="customer">
+                Покупатель
+            </label>
+            <label>
+                <input type="radio" name="userType" value="developer">
+                Разработчик
+            </label>
+            <input type="submit" title="Зарегистрироваться" value="Зарегистрироваться">
+        </p>
+    </form>
+</body>
+</html>

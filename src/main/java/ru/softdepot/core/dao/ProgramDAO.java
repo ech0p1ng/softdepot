@@ -36,24 +36,16 @@ public class ProgramDAO implements DAO<Program> {
         if (!exists(program.getName(), program.getDeveloperId())) {
             try {
                 PreparedStatement statement = connection.prepareStatement(
-                        "INSERT INTO program (program_name, price, description, logo_url, installer_windows_url," +
-                                "installer_linux_url, installer_macos_url, screenshots_url, developer_id) " +
-                                "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?) RETURNING id"
+                        "INSERT INTO program (program_name, price, description, developer_id) " +
+                                "VALUES (?, ?, ?, ?) RETURNING id"
                 );
 
                 statement.setString(1, program.getName());
                 statement.setBigDecimal(2, program.getPrice());
-                statement.setString(3, program.getDescription());
-                statement.setString(4, program.getLogoUrl());
-                statement.setString(5, program.getInstallerWindowsUrl());
-                statement.setString(6, program.getInstallerLinuxUrl());
-                statement.setString(7, program.getInstallerMacosUrl());
-                statement.setInt(9, program.getDeveloperId());
-                //массив varchar
-                Array screenshotsUrl = connection.createArrayOf(
-                        "VARCHAR", program.getScreenshotsUrl().toArray()
-                );
-                statement.setArray(8, screenshotsUrl);
+                statement.setString(3, program.getFullDescription());
+                statement.setInt(4, program.getDeveloperId());
+
+
                 ResultSet resultSet = statement.executeQuery();
                 if (resultSet.next()) {
                     return resultSet.getInt("id");
@@ -73,26 +65,15 @@ public class ProgramDAO implements DAO<Program> {
     public void update(Program program) {
         try {
             PreparedStatement statement = connection.prepareStatement(
-                    "UPDATE program SET program_name=?, price=?, description=?, logo_url=?," +
-                            "installer_windows_url=?, installer_linux_url=?, installer_macos_url=?," +
-                            "screenshots_url=?, developer_id=? WHERE id=?"
+                    "UPDATE program SET program_name=?, price=?, description=?, developer_id=? " +
+                            "WHERE id=?"
             );
 
             statement.setString(1, program.getName());
             statement.setBigDecimal(2, program.getPrice());
-            statement.setString(3, program.getDescription());
-            statement.setString(4, program.getLogoUrl());
-            statement.setString(5, program.getInstallerWindowsUrl());
-            statement.setString(6, program.getInstallerLinuxUrl());
-            statement.setString(7, program.getInstallerMacosUrl());
-            statement.setInt(9, program.getDeveloperId());
-            statement.setInt(10, program.getId());
-
-            //массив varchar
-            Array screenshotsUrl = connection.createArrayOf(
-                    "VARCHAR", program.getScreenshotsUrl().toArray()
-            );
-            statement.setArray(8, screenshotsUrl);
+            statement.setString(3, program.getFullDescription());
+            statement.setInt(4, program.getDeveloperId());
+            statement.setInt(5, program.getId());
 
             statement.executeUpdate();
         } catch (SQLException e) {
@@ -125,20 +106,18 @@ public class ProgramDAO implements DAO<Program> {
 
             if (resultSet.next()) {
                 //Преобразование java.sql.Array в List<URL>
-                Array tempSqlArray = resultSet.getArray("screenshots_url");
-                String[] screenshotsUrlStrArr = (String[])tempSqlArray.getArray();
-                List<String> screenshotsUrlList = Arrays.stream(screenshotsUrlStrArr).toList();
+//                Array tempSqlArray = resultSet.getArray("screenshots_url");
+//                List<String> screenshotsUrlList = new ArrayList<>();
+//                if (tempSqlArray != null) {
+//                    String[] screenshotsUrlStrArr = (String[])tempSqlArray.getArray();
+//                    screenshotsUrlList = Arrays.stream(screenshotsUrlStrArr).toList();
+//                }
 
                 program = new Program(
                         resultSet.getInt("id"),
                         resultSet.getString("program_name"),
                         resultSet.getBigDecimal("price"),
                         resultSet.getString("description"),
-                        resultSet.getString("logo_url"),
-                        resultSet.getString("installer_windows_url"),
-                        resultSet.getString("installer_linux_url"),
-                        resultSet.getString("installer_macos_url"),
-                        screenshotsUrlList,
                         resultSet.getInt("developer_id"),
                         resultSet.getString("short_description"),
                         getTags(resultSet.getInt("id"))
@@ -181,20 +160,18 @@ public class ProgramDAO implements DAO<Program> {
             ResultSet resultSet = statement.executeQuery();
             if (resultSet.next()) {
                 //Преобразование java.sql.Array в List<URL>
-                Array tempSqlArray = resultSet.getArray("screenshots_url");
-                String[] screenshotsUrlStrArr = (String[])tempSqlArray.getArray();
-                List<String> screenshotsUrlList = Arrays.stream(screenshotsUrlStrArr).toList();
+//                Array tempSqlArray = resultSet.getArray("screenshots_url");
+//                List<String> screenshotsUrlList = new ArrayList<>();
+//                if (tempSqlArray != null) {
+//                    String[] screenshotsUrlStrArr = (String[])tempSqlArray.getArray();
+//                    screenshotsUrlList = Arrays.stream(screenshotsUrlStrArr).toList();
+//                }
 
                 program = new Program(
                         resultSet.getInt("id"),
                         resultSet.getString("program_name"),
                         resultSet.getBigDecimal("price"),
                         resultSet.getString("description"),
-                        resultSet.getString("logo_url"),
-                        resultSet.getString("installer_windows_url"),
-                        resultSet.getString("installer_linux_url"),
-                        resultSet.getString("installer_macos_url"),
-                        screenshotsUrlList,
                         resultSet.getInt("developer_id"),
                         resultSet.getString("short_description"),
                         getTags(resultSet.getInt("id"))
@@ -220,20 +197,19 @@ public class ProgramDAO implements DAO<Program> {
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()) {
                 //Преобразование java.sql.Array в List<URL>
-                Array tempSqlArray = resultSet.getArray("screenshots_url");
-                String[] screenshotsUrlStrArr = (String[])tempSqlArray.getArray();
-                List<String> screenshotsUrlList = Arrays.stream(screenshotsUrlStrArr).toList();
+//                Array tempSqlArray = resultSet.getArray("screenshots_url");
+//                List<String> screenshotsUrlList = new ArrayList<>();
+//                if (tempSqlArray != null) {
+//                    String[] screenshotsUrlStrArr = (String[])tempSqlArray.getArray();
+//                    screenshotsUrlList = Arrays.stream(screenshotsUrlStrArr).toList();
+//                }
+
 
                 Program program = new Program(
                         resultSet.getInt("id"),
                         resultSet.getString("program_name"),
                         resultSet.getBigDecimal("price"),
                         resultSet.getString("description"),
-                        resultSet.getString("logo_url"),
-                        resultSet.getString("installer_windows_url"),
-                        resultSet.getString("installer_linux_url"),
-                        resultSet.getString("installer_macos_url"),
-                        screenshotsUrlList,
                         resultSet.getInt("developer_id"),
                         resultSet.getString("short_description"),
                         getTags(resultSet.getInt("id"))
@@ -258,19 +234,17 @@ public class ProgramDAO implements DAO<Program> {
             while (resultSet.next()) {
                 //Преобразование java.sql.Array в List<URL>
                 Array tempSqlArray = resultSet.getArray("screenshots_url");
-                String[] screenshotsUrlStrArr = (String[])tempSqlArray.getArray();
-                List<String> screenshotsUrlList = Arrays.stream(screenshotsUrlStrArr).toList();
+                List<String> screenshotsUrlList = new ArrayList<>();
+                if (tempSqlArray != null) {
+                    String[] screenshotsUrlStrArr = (String[])tempSqlArray.getArray();
+                    screenshotsUrlList = Arrays.stream(screenshotsUrlStrArr).toList();
+                }
 
                 Program program = new Program(
                         resultSet.getInt("id"),
                         resultSet.getString("program_name"),
                         resultSet.getBigDecimal("price"),
                         resultSet.getString("description"),
-                        resultSet.getString("logo_url"),
-                        resultSet.getString("installer_windows_url"),
-                        resultSet.getString("installer_linux_url"),
-                        resultSet.getString("installer_macos_url"),
-                        screenshotsUrlList,
                         resultSet.getInt("developer_id"),
                         resultSet.getString("short_description"),
                         getTags(resultSet.getInt("id"))

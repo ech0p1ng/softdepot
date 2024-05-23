@@ -12,6 +12,8 @@ public class CurrentUser {
 
     public static void set(User user) {
         currentUser = user;
+        System.out.printf("User type: %s\nName: %s\nE-mail: %s\nPassword: %s\n",
+                currentUser.getUserType(), currentUser.getName(), currentUser.getEmail(), currentUser.getPassword());
     }
 
     public static User get() {

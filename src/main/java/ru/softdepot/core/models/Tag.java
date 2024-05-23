@@ -3,10 +3,10 @@ package ru.softdepot.core.models;
 public class Tag {
     private int id;
     private String name;
-    private float degreeOfBelonging;
+    private int degreeOfBelonging;
     private int programId;
 
-    public Tag(int id, String name, float degreeOfBelonging, int programId) {
+    public Tag(int id, String name, int degreeOfBelonging, int programId) {
         this.id = id;
         this.name = name;
         this.degreeOfBelonging = degreeOfBelonging;
@@ -41,11 +41,11 @@ public class Tag {
         this.name = name;
     }
 
-    public float getDegreeOfBelonging() {
+    public int getDegreeOfBelonging() {
         return degreeOfBelonging;
     }
 
-    public void setDegreeOfBelonging(float degreeOfBelonging) {
+    public void setDegreeOfBelonging(int degreeOfBelonging) {
         this.degreeOfBelonging = degreeOfBelonging;
     }
 

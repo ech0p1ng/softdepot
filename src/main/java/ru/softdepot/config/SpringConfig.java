@@ -23,6 +23,7 @@ import javax.sql.DataSource;
 @EnableWebMvc
 public class SpringConfig implements WebMvcConfigurer {
     private final ApplicationContext applicationContext;
+    public final String uploadPath = "C:\\SoftDepot";
 
     @Autowired
     public SpringConfig(ApplicationContext applicationContext) {
@@ -67,16 +68,12 @@ public class SpringConfig implements WebMvcConfigurer {
         return dataSource;
     }
 
-    @Bean
-    public JdbcTemplate jdbcTemplate(){
-        return new JdbcTemplate(dataSource());
-    }
-
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/program/**").addResourceLocations("/WEB-INF/views/program/");
-        registry.addResourceHandler("/mainPage/**").addResourceLocations("/WEB-INF/views/mainPage/");
+        registry.addResourceHandler("/main_page/**").addResourceLocations("/WEB-INF/views/main_page/");
         registry.addResourceHandler("/default/**").addResourceLocations("/WEB-INF/views/default/");
         registry.addResourceHandler("/user/**").addResourceLocations("/WEB-INF/views/user/");
+//        registry.addResourceHandler("/program/**").addResourceLocations("file:/WEB-INF/views/program/");
     }
 }

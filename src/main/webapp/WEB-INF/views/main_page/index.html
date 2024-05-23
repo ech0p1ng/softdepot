@@ -4,7 +4,7 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="stylesheet" href="/default/styles/base.css" />
-        <link rel="stylesheet" href="/mainPage/styles/index.css" />
+        <link rel="stylesheet" href="/main_page/styles/index.css" />
         <link rel="stylesheet" href="/default/cart/styles/cart.css" />
         <link id="color-scheme" rel="stylesheet" href="/default/styles/dark.css" />
         <!-- <link rel="stylesheet" href="styles/dark.css" /> -->
@@ -72,12 +72,12 @@
                     <div id="cart-games-list" th:each="program : ${programs}">
 
                         <div class="cart-game-row">
-                            <img class="preview" src="games/BeamNG_drive/images/header.jpg" />
-                            <a class="cart-game-description" href="games/BeamNG_drive/index.html">
-                                <span class="cart-game-title">BeamNG.drive</span>
+                            <img class="preview" th:src="${program.getHeaderUrl()}" />
+                            <a class="cart-game-description" th:href="@{/program/id{id}(id=${program.getId()})}" target="_blank">
+                                <span class="cart-game-title" th:text="${program.getName()}">GAME_NAME</span>
                             </a>
                             <div class="cart-game-price">
-                                <span class="cart-game-price-title">400 руб.</span>
+                                <span class="cart-game-price-title" th:text="${program.getPriceAsString()}">GAME_PRICE</span>
                                 <button class="cart-game-remove button">x</button>
                             </div>
                         </div>
@@ -98,7 +98,7 @@
     <script src="/default/scripts/jquery-3.7.1.min.js"></script>
     <script src="/default/scripts/game.js"></script>
 <!--    <script src="/mainPage/scripts/main.js"></script>-->
-    <script src="/mainPage/cart/scripts/cart.js"></script>
-    <script src="/mainPage/scripts/theme.js"></script>
+    <script src="/main_page/cart/scripts/cart.js"></script>
+    <script src="/main_page/scripts/theme.js"></script>
     <script src="/default/scripts/game-highlights.js"></script>
 </html>

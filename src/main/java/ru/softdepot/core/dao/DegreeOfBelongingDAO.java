@@ -153,7 +153,7 @@ public class DegreeOfBelongingDAO implements DAO<DegreeOfBelonging> {
                         resultSet.getInt("id"),
                         resultSet.getInt("program_id"),
                         resultSet.getInt("tag_id"),
-                        resultSet.getFloat("degree_value")
+                        resultSet.getInt("degree_value")
                 );
                 degreeOfBelongingList.add(degreeOfBelonging);
             }

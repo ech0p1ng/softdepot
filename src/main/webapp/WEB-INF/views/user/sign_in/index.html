@@ -2,11 +2,11 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Soft Depot - Регистрация</title>
+    <title>Soft Depot - Вход</title>
 </head>
 <body>
     <form th:method="POST"
-          th:action="@{/auth}"
+          th:action="@{/sign-in/check}"
     >
         <p>
             <label for="email">E-mail:</label>
@@ -15,7 +15,11 @@
             <label for="password">Пароль:</label>
             <input type="password" id="password" name="password">
             <br/>
-            <input type="submit" title="Войти">
+            <span>
+                <a th:href="@{/registration}">Зарегистрируйтесь</a>
+                , если у вас еще нет аккаунта!
+            </span>
+            <input type="submit" title="Войти" value="Войти">
         </p>
     </form>
 </body>

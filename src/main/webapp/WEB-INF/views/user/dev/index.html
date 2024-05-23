@@ -17,6 +17,8 @@
     <span th:text="'URL аватарки: ' + ${developer.getProfileImgUrl()}">DEVELOPER_PROFILE_IMG_URL</span>
     <br/>
 
+    <a th:href="@{/developer/id{id}/upload-program(id=${developer.getId()})}">Добавить программу</a>
+
     <span>Добавленные программы</span>
     <ul>
         <li>

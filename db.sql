@@ -39,11 +39,11 @@ CREATE TABLE program(
 	price numeric(10,2) CHECK (price >= 0),
 	short_description varchar NOT NULL,
 	description varchar NOT NULL,
-	logo_url varchar(100) NOT NULL,
-	installer_windows_url varchar(100),
-	installer_linux_url varchar(100),
-	installer_macos_url varchar(100),
-	screenshots_url varchar(100)[]
+	--logo_url varchar(100) NOT NULL,
+	--installer_windows_url varchar(100),
+	--installer_linux_url varchar(100),
+	--installer_macos_url varchar(100),
+	--screenshots_url varchar(100)[]
 );
 
 --степень принадлежности к ключевому слову
@@ -89,7 +89,7 @@ CREATE TABLE cart (
     id SERIAL PRIMARY KEY,
     customer_id int NOT NULL REFERENCES customer(id) ON DELETE CASCADE,
     program_id int NOT NULL REFERENCES program(id) ON DELETE CASCADE
-)
+);
 
 --роли
 CREATE ROLE administrator_role WITH LOGIN PASSWORD '9QrlLHkwMJah3hNoMRlW' SUPERUSER;
