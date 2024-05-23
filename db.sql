@@ -89,7 +89,7 @@ CREATE TABLE cart (
     id SERIAL PRIMARY KEY,
     customer_id int NOT NULL REFERENCES customer(id) ON DELETE CASCADE,
     program_id int NOT NULL REFERENCES program(id) ON DELETE CASCADE
-)
+);
 
 --роли
 CREATE ROLE administrator_role WITH LOGIN PASSWORD '9QrlLHkwMJah3hNoMRlW' SUPERUSER;

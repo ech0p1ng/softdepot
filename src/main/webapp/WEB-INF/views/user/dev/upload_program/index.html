@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${'Soft Depot - Добавление программы - ' + developer.getName()}">Soft Depot - Добавление программы - DEVELOPER_NAME</title>
+</head>
+<body>
+    <form th:method="POST"
+          th:action="@{/developer/id{id}/upload-program(id=${developer.getId()})}"
+          enctype="multipart/form-data"
+    >
+        <p>
+            <label for="program-name">Название программы</label>
+            <input type="text" name="program-name" id="program-name">
+        </p>
+        <p>
+            <label for="short-description">Краткое описание</label>
+            <textarea type="text" name="short-description" id="short-description"></textarea>
+        </p>
+        <p>
+            <label for="full-description">Полное описание</label>
+            <textarea type="text" name="full-description" id="full-description"></textarea>
+        </p>
+        <p>
+            <label for="price">Стоимость</label>
+            <input type="number" name="price" id="price" min="0">
+        </p>
+        <p>
+            <label for="logo">Лого</label>
+            <input type="file" name="logo" id="logo" accept="image/jpeg">
+        </p>
+        <p>
+            <label for="win-installer">Установщик Windows</label>
+            <input type="file" name="win-installer" id="win-installer">
+        </p>
+        <p>
+            <label for="linux-installer">Установщик Linux</label>
+            <input type="file" name="linux-installer" id="linux-installer">
+        </p>
+        <p>
+            <label for="macos-installer">Установщик MacOS</label>
+            <input type="file" name="macos-installer" id="macos-installer">
+        </p>
+        <p>
+            <label for="program-header-img">Заголовочное изображение</label>
+            <input type="file" name="program-header-img" id="program-header-img" accept="image/jpeg">
+        </p>
+        <p>
+            <label for="screenshots">Скриншоты</label>
+            <input type="file" name="screenshots" id="screenshots" accept="image/jpeg" multiple>
+        </p>
+    </form>
+</body>
+</html>

@@ -17,11 +17,6 @@ public class MainPageController {
     public String mainPage(Model model){
         List<Program> programs = programDAO.getAll();
 
-        try {
-            System.out.println(CurrentUser.get().getUserType());
-        }
-        catch (Exception e) {}
-
         model.addAttribute("programs", programs);
 
         return "main_page/index";

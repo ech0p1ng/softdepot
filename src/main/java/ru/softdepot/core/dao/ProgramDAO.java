@@ -126,8 +126,11 @@ public class ProgramDAO implements DAO<Program> {
             if (resultSet.next()) {
                 //Преобразование java.sql.Array в List<URL>
                 Array tempSqlArray = resultSet.getArray("screenshots_url");
-                String[] screenshotsUrlStrArr = (String[])tempSqlArray.getArray();
-                List<String> screenshotsUrlList = Arrays.stream(screenshotsUrlStrArr).toList();
+                List<String> screenshotsUrlList = new ArrayList<>();
+                if (tempSqlArray != null) {
+                    String[] screenshotsUrlStrArr = (String[])tempSqlArray.getArray();
+                    screenshotsUrlList = Arrays.stream(screenshotsUrlStrArr).toList();
+                }
 
                 program = new Program(
                         resultSet.getInt("id"),
@@ -182,8 +185,11 @@ public class ProgramDAO implements DAO<Program> {
             if (resultSet.next()) {
                 //Преобразование java.sql.Array в List<URL>
                 Array tempSqlArray = resultSet.getArray("screenshots_url");
-                String[] screenshotsUrlStrArr = (String[])tempSqlArray.getArray();
-                List<String> screenshotsUrlList = Arrays.stream(screenshotsUrlStrArr).toList();
+                List<String> screenshotsUrlList = new ArrayList<>();
+                if (tempSqlArray != null) {
+                    String[] screenshotsUrlStrArr = (String[])tempSqlArray.getArray();
+                    screenshotsUrlList = Arrays.stream(screenshotsUrlStrArr).toList();
+                }
 
                 program = new Program(
                         resultSet.getInt("id"),
@@ -221,8 +227,12 @@ public class ProgramDAO implements DAO<Program> {
             while (resultSet.next()) {
                 //Преобразование java.sql.Array в List<URL>
                 Array tempSqlArray = resultSet.getArray("screenshots_url");
-                String[] screenshotsUrlStrArr = (String[])tempSqlArray.getArray();
-                List<String> screenshotsUrlList = Arrays.stream(screenshotsUrlStrArr).toList();
+                List<String> screenshotsUrlList = new ArrayList<>();
+                if (tempSqlArray != null) {
+                    String[] screenshotsUrlStrArr = (String[])tempSqlArray.getArray();
+                    screenshotsUrlList = Arrays.stream(screenshotsUrlStrArr).toList();
+                }
+
 
                 Program program = new Program(
                         resultSet.getInt("id"),
@@ -258,8 +268,11 @@ public class ProgramDAO implements DAO<Program> {
             while (resultSet.next()) {
                 //Преобразование java.sql.Array в List<URL>
                 Array tempSqlArray = resultSet.getArray("screenshots_url");
-                String[] screenshotsUrlStrArr = (String[])tempSqlArray.getArray();
-                List<String> screenshotsUrlList = Arrays.stream(screenshotsUrlStrArr).toList();
+                List<String> screenshotsUrlList = new ArrayList<>();
+                if (tempSqlArray != null) {
+                    String[] screenshotsUrlStrArr = (String[])tempSqlArray.getArray();
+                    screenshotsUrlList = Arrays.stream(screenshotsUrlStrArr).toList();
+                }
 
                 Program program = new Program(
                         resultSet.getInt("id"),
