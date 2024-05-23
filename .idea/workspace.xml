@@ -106,7 +106,7 @@
         </artifact>
       </deployment>
       <server-settings>
-        <option name="BASE_DIRECTORY_NAME" value="198eca28-9483-4351-a1bb-c4cab108b118" />
+        <option name="BASE_DIRECTORY_NAME" value="5fef2a27-a5bc-45c5-874e-50ed6ac9fbe7" />
       </server-settings>
       <predefined_log_file enabled="true" id="Tomcat" />
       <predefined_log_file enabled="true" id="Tomcat Catalina" />
@@ -114,7 +114,7 @@
       <predefined_log_file id="Tomcat Host Manager" />
       <predefined_log_file id="Tomcat Localhost Access" />
       <RunnerSettings RunnerId="Debug">
-        <option name="DEBUG_PORT" value="60727" />
+        <option name="DEBUG_PORT" value="49721" />
       </RunnerSettings>
       <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Cover">
         <option name="USE_ENV_VARIABLES" value="true" />
@@ -204,16 +204,13 @@
       <workItem from="1716288783676" duration="190000" />
       <workItem from="1716288981177" duration="14145000" />
       <workItem from="1716320028829" duration="568000" />
-<<<<<<< HEAD
       <workItem from="1716366988839" duration="22026000" />
       <workItem from="1716409931101" duration="76000" />
       <workItem from="1716414833291" duration="653000" />
       <workItem from="1716415506692" duration="629000" />
       <workItem from="1716416175289" duration="855000" />
       <workItem from="1716439489242" duration="10150000" />
-=======
       <workItem from="1716366988839" duration="22143000" />
->>>>>>> a578a03d62ddedba0c74a2d68878929bc3816d95
     </task>
     <servers />
   </component>
