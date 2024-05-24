@@ -27,6 +27,8 @@ public class Developer extends User {
         this.profileImgUrl = "";
     }
 
+    public Developer() {}
+
     public int getId() {
         return id;
     }

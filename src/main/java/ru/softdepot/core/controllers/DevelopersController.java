@@ -1,8 +1,11 @@
 package ru.softdepot.core.controllers;
 
+import jakarta.servlet.ServletOutputStream;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import ru.softdepot.core.dao.DeveloperDAO;
@@ -15,8 +18,10 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.List;
+import java.util.Vector;
 
 @Controller
 @RequestMapping("/developer")
@@ -42,8 +47,12 @@ public class DevelopersController {
     public String uploadProgram(@PathVariable("id") int id, Model model) {
         try {
             Developer developer = developerDAO.getById(id);
-            List<Tag> allTags = tagDAO.getAll();
+            Vector<Tag> allTags = new Vector<>(tagDAO.getAll());
+            Program program = new Program();
+            program.setName("Squad");
+
             model.addAttribute("developer", developer);
+            model.addAttribute("program", program);
             model.addAttribute("allTags", allTags);
         } catch (Exception e) {
             e.printStackTrace();
@@ -51,28 +60,30 @@ public class DevelopersController {
         return "user/dev/upload_program/index";
     }
 
-    @PostMapping("/id{id}/upload-program/check")
+    @PostMapping(value = "/id{id}/upload-program/check",
+            consumes = "multipart/form-data")
     public String uploadProgramCheck(
             @PathVariable("id") int developerId,
-            @RequestParam(required = false, name="program-name") String programName,
-            @RequestParam(required = false, name="short-description") String shortDescription,
-            @RequestParam(required = false, name="full-description") String fullDescription,
-            @RequestParam(required = false, name="price") BigDecimal price,
-            @RequestParam(required = false, name="logo") MultipartFile logo,
-            @RequestParam(required = false, name="win-installer") MultipartFile winInstaller,
-            @RequestParam(required = false, name="linux-installer") MultipartFile linuxInstaller,
-            @RequestParam(required = false, name="macos-installer") MultipartFile macosInstaller,
-            @RequestParam(required = false, name="program-header-img") MultipartFile headerImg,
-            @RequestParam(required = false, name="screenshots") MultipartFile[] file) {
+            @ModelAttribute("developer") @Valid Developer developer,
+            @ModelAttribute("program") @Valid Program program,
+            @ModelAttribute("allTags") @Valid Vector<Tag> allTags,
+            BindingResult bindingResult){
 
-        System.out.println(programName);
-        System.out.println(shortDescription);
-        System.out.println(fullDescription);
-        System.out.println(price);
-        System.out.println(developerId);
-        System.out.println(winInstaller.getContentType());
 
-        return "redirect:/program/id1";
+        if (bindingResult.hasErrors()){
+            var errors = bindingResult.getAllErrors();
+            for (var error : errors){
+                System.out.println(error.getDefaultMessage());
+            }
+            return "redirect:/developer/id"+ developerId + "/upload-program";
+        }
+
+        System.out.println(program.getName());
+
+
+
+//        return "redirect:/program/id1";
+        return "redirect:/developer/id"+ developerId + "/upload-program";
     }
 
     private void uploadFile(String path, String fileName, MultipartFile file) throws IOException {

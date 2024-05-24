@@ -1,5 +1,7 @@
 package ru.softdepot.core.models;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import java.io.File;
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -18,6 +20,13 @@ public class Program {
     private float averageEstimation;
     private String filesPath;
     private String nameForPath;
+
+    private MultipartFile winInstaller;
+    private MultipartFile linuxInstaller;
+    private MultipartFile macosInstaller;
+    private MultipartFile headerImg;
+    private MultipartFile[] screenshots;
+    private MultipartFile logo;
 
     public Program(int id, String name, BigDecimal price, String fullDescription,
                    int developerId, String shortDescription, List<Tag> tags) {
@@ -54,6 +63,24 @@ public class Program {
 
     public Program(int id) {
         this.id = id;
+    }
+
+    public Program() {}
+
+    public Program(String name, String shortDescription, String fullDescription,
+                   BigDecimal price, MultipartFile logo, MultipartFile winInstaller,
+                   MultipartFile linuxInstaller, MultipartFile macosInstaller,
+                   MultipartFile headerImg, MultipartFile[] screenshots) {
+        setName(name);
+        setShortDescription(shortDescription);
+        setFullDescription(fullDescription);
+        setPrice(price);
+        setLogo(logo);
+        setWinInstaller(winInstaller);
+        setLinuxInstaller(linuxInstaller);
+        setMacosInstaller(macosInstaller);
+        setHeaderImg(headerImg);
+        setScreenshots(screenshots);
     }
 
     public int getId() {
@@ -199,5 +226,54 @@ public class Program {
 
     public String getHeaderUrl() {
         return filesPath + "/header.jpg";
+    }
+
+
+    public MultipartFile getWinInstaller() {
+        return winInstaller;
+    }
+
+    public void setWinInstaller(MultipartFile winInstaller) {
+        this.winInstaller = winInstaller;
+    }
+
+    public MultipartFile getLinuxInstaller() {
+        return linuxInstaller;
+    }
+
+    public void setLinuxInstaller(MultipartFile linuxInstaller) {
+        this.linuxInstaller = linuxInstaller;
+    }
+
+    public MultipartFile getMacosInstaller() {
+        return macosInstaller;
+    }
+
+    public void setMacosInstaller(MultipartFile macosInstaller) {
+        this.macosInstaller = macosInstaller;
+    }
+
+    public MultipartFile getHeaderImg() {
+        return headerImg;
+    }
+
+    public void setHeaderImg(MultipartFile headerImg) {
+        this.headerImg = headerImg;
+    }
+
+    public MultipartFile[] getScreenshots() {
+        return screenshots;
+    }
+
+    public void setScreenshots(MultipartFile[] screenshots) {
+        this.screenshots = screenshots;
+    }
+
+    public MultipartFile getLogo() {
+        return logo;
+    }
+
+    public void setLogo(MultipartFile logo) {
+        this.logo = logo;
     }
 }
