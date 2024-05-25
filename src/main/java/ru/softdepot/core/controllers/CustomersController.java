@@ -19,10 +19,19 @@ public class CustomersController {
 
     @GetMapping("/id{id}")
     public String customerPublicPage(@PathVariable("id") int id, Model model) {
+        Customer customer = null;
         try {
-            Customer customer = customerDAO.getById(id);
-            List<Program> purchasedPrograms = customerDAO.getPurchasedPrograms(customer);
-            List<Review> reviews = customerDAO.getAllReviewsByCustomer(customer);
+            customer = customerDAO.getById(id);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        List<Program> purchasedPrograms = null;
+        try {
+            purchasedPrograms = customerDAO.getPurchasedPrograms(customer);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        List<Review> reviews = customerDAO.getAllReviewsByCustomer(customer);
             List<Program> programsInCart = customerDAO.getProgramsInCart(customer);
 
             for (Review review : reviews) {
@@ -34,9 +43,6 @@ public class CustomersController {
             model.addAttribute("purchasedPrograms", purchasedPrograms);
             model.addAttribute("reviews", reviews);
             model.addAttribute("programsInCart", programsInCart);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
 //        return "user/customer/index";
         return "user/customer/temp";
     }

@@ -5,9 +5,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="stylesheet" href="/default/styles/base.css" />
         <link rel="stylesheet" href="/main_page/styles/index.css" />
-        <link rel="stylesheet" href="/default/cart/styles/cart.css" />
         <link id="color-scheme" rel="stylesheet" href="/default/styles/dark.css" />
-        <!-- <link rel="stylesheet" href="styles/dark.css" /> -->
+        <link rel="stylesheet" href="/default/cart/styles/cart.css" />
         <title>Soft Depot</title>
     </head>
     <body>
@@ -20,8 +19,9 @@
 
             <div class="header-buttons">
                 <!-- Кнопка "Домой" -->
-                <a class="main-button button" th:href="@{/}">
+                <a id="main-button" class="button" th:href="@{/}">
                     <div class="logo"></div>
+
                     <span class="store-name" title="Главная страница">SOFT DEPOT</span>
                 </a>
 
@@ -33,14 +33,38 @@
                     <button class="shopping-basket button" title="Корзина" onclick="show_cart()"></button>
 
                     <!-- Профиль -->
-                    <button class="profile button" title="Профиль"></button>
+                    <div th:if="${user == null}">
+                        <a class="profile button"
+                           title="Войти"
+                           th:href="@{/sign-in}">
+                        </a>
+                    </div>
+                    <div th:unless="${user == null}">
+                        <div th:switch="${user.getUserType()}">
+                            <a th:case="${typeCustomer}"
+                               class="profile button"
+                               title="Профиль"
+                               th:href="@{/customer/id{id}(id=${user.getId()})}">
+                            </a>
+                            <a th:case="${typeAdministrator}"
+                               class="profile button"
+                               title="Профиль"
+                               th:href="@{/administrator/id{id}(id=${user.getId()})}">
+                            </a>
+                            <a th:case="${typeDeveloper}"
+                               class="profile button"
+                               title="Профиль"
+                               th:href="@{/developer/id{id}(id=${user.getId()})}">
+                            </a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </header>
         <main>
-            <div id="games-list" th:each="program : ${programs}">
-
-                <div class="game-row" style="z-index: 1;">
+            <div id="games-list" >
+                <!-- Строка игры в каталоге-->
+                <div class="game-row" style="z-index: 1;" th:each="program : ${programs}">
                     <img class="preview" th:src="${program.getHeaderUrl()}">
                     <a th:href="@{/program/id{id}(id=${program.getId()})}" target="_blank" class="description">
                         <div>
@@ -54,14 +78,13 @@
                         <span class="price">
                             <span th:text="${program.getPriceAsString()}">GAME_PRICE</span>
                         </span>
-                        <button class="add-to-cart" style="z-index: 2;">
+                        <button class="add-to-cart" style="z-index: 2;" th:attr="program-id=${program.getId()}" onclick="cart_handler()">
                             <span>Добавить в корзину</span>
                         </button>
                     </div>
                 </div>
-
-
             </div>
+
             <!-- Корзина -->
             <div id="cart-bg">
                 <div id="cart-opened">
@@ -69,19 +92,17 @@
                         <span id="cart-title">Корзина</span>
                         <button id="cart-exit-button" class="exit-button button close-button"></button>
                     </div>
-                    <div id="cart-games-list" th:each="program : ${programs}">
-
-                        <div class="cart-game-row">
+                    <div id="cart-games-list">
+                        <div th:each="program : ${programsInCart}" class="cart-game-row">
                             <img class="preview" th:src="${program.getHeaderUrl()}" />
                             <a class="cart-game-description" th:href="@{/program/id{id}(id=${program.getId()})}" target="_blank">
                                 <span class="cart-game-title" th:text="${program.getName()}">GAME_NAME</span>
                             </a>
                             <div class="cart-game-price">
                                 <span class="cart-game-price-title" th:text="${program.getPriceAsString()}">GAME_PRICE</span>
-                                <button class="cart-game-remove button">x</button>
+                                <button class="cart-game-remove button"></button>
                             </div>
                         </div>
-
                     </div>
                     <div id="cart-total-title">
                         <span>Итого</span>
@@ -96,9 +117,7 @@
     </body>
 
     <script src="/default/scripts/jquery-3.7.1.min.js"></script>
-    <script src="/default/scripts/game.js"></script>
-<!--    <script src="/mainPage/scripts/main.js"></script>-->
-    <script src="/main_page/cart/scripts/cart.js"></script>
-    <script src="/main_page/scripts/theme.js"></script>
+    <script src="/default/cart/scripts/cart.js"></script>
+    <script src="/default/scripts/theme.js"></script>
     <script src="/default/scripts/game-highlights.js"></script>
 </html>

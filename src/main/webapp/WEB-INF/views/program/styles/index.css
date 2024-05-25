@@ -108,7 +108,7 @@ body::-webkit-scrollbar-track {
     padding: 10px;
 }
 
-#buy-button {
+.add-to-cart {
     border: none;
     color: var(--text-bright-color);
     background-color: darkgreen;
@@ -117,7 +117,7 @@ body::-webkit-scrollbar-track {
     transition: background-color 0.3s ease-in-out;
 }
 
-#buy-button:hover {
+.add-to-cart:hover {
     background-color: green;
     cursor: pointer;
 }

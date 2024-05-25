@@ -81,9 +81,11 @@ header img {
     border-radius: 10px;
     transition: background-color 0.3s ease-in-out;
     background-color: var(--bg-opacity);
+    background-repeat: no-repeat;
+    background-position: center;
 }
 
-.main-button {
+#main-button {
     height: 100%;
     align-items: center;
     display: flex;
@@ -104,18 +106,18 @@ header img {
     background-position: center;
 }
 
-.button:hover {
+.button:hover, #main-button:hover {
     cursor: pointer;
     background-color: var(--bg-no-opacity);
 }
 
-header button {
+header .button {
     height: 40px;
     width: 40px;
     margin-left: 5px;
 }
 
-header button img {
+header .button img {
     height: 30px;
     width: 30px;
 }

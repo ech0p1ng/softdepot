@@ -67,7 +67,6 @@ public class UsersController {
         return "redirect:/";
     }
 
-
     @GetMapping("/registration")
     public String registration() {
         return "user/registration/index";
@@ -121,5 +120,9 @@ public class UsersController {
         return "redirect:/";
     }
 
-
+    @PostMapping("/log-out")
+    public String logOut(HttpServletRequest request) {
+        CurrentUser.set(null);
+        return "redirect:/";
+    }
 }

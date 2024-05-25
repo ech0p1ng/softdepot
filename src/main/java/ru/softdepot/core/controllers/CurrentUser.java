@@ -12,11 +12,18 @@ public class CurrentUser {
 
     public static void set(User user) {
         currentUser = user;
-        System.out.printf("User type: %s\nName: %s\nE-mail: %s\nPassword: %s\n",
-                currentUser.getUserType(), currentUser.getName(), currentUser.getEmail(), currentUser.getPassword());
+        if (currentUser != null) {
+            System.out.printf("User type: %s\nName: %s\nE-mail: %s\nPassword: %s\n",
+                    currentUser.getUserType(), currentUser.getName(), currentUser.getEmail(), currentUser.getPassword());
+        }
+        else {
+            System.out.println("Logged out");
+        }
     }
 
     public static User get() {
         return currentUser;
     }
+
+
 }

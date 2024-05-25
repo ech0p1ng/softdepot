@@ -2,93 +2,78 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title th:text="${'Soft Depot - Добавление программы - ' + developer.getName()}">Soft Depot - Добавление программы - DEVELOPER_NAME</title>
+    <title>Soft Depot - Добавление программы</title>
 </head>
 <body>
-    <form th:method="POST"
-          th:action="@{/developer/id{id}/upload-program/check(id=${developer.getId()})}"
+    <form method="post"
           th:object="${program}"
-          enctype="multipart/form-data">
-
-        <label for="program-name">Название программы</label>
-        <input type="text"
-               name="program-name"
-               id="program-name"
-               th:field="*{name}">
-        <br/>
-
-        <label for="short-description">Краткое описание</label>
-        <textarea name="short-description"
-                  id="short-description"
-                  th:field="*{shortDescription}">
-
-        </textarea>
-        <br/>
-
-        <label for="full-description">Полное описание</label>
-        <textarea name="full-description"
-                  id="full-description"
-                  th:field="*{fullDescription}"
+          th:action="@{/program/new/check}"
+    >
+        <label for="programName">Название программы</label>
+        <input type="text" name="programName" id="programName"
+               th:field="*{name}"
         >
+        <br/>
 
+        <!--                  th:field="*{program.shortDescription}">-->
+        <label for="shortDescription">Краткое описание</label>
+        <textarea name="shortDescription" id="shortDescription" th:field="*{shortDescription}"></textarea>
+        <br/>
+
+        <!--                  th:field="*{program.fullDescription}">-->
+        <label for="fullDescription">Полное описание</label>
+        <textarea name="fullDescription" id="fullDescription" th:field="*{fullDescription}">
         </textarea>
         <br/>
 
+        <!--               th:field="*{program.price}">-->
         <label for="price">Стоимость</label>
-        <input type="number" name="price" id="price" min="0"
-               th:field="*{price}"
-        >
+        <input type="number" name="price" id="price" min="0" th:field="*{price}">
         <br/>
 
-        <label for="logo">Лого</label>
-        <input type="file" name="logo" id="logo" accept="image/jpeg"
-               th:field="*{logo}"
-        >
-        <br/>
-
-        <label for="win-installer">Установщик Windows</label>
-        <input type="file" name="win-installer" id="win-installer"
-               th:field="*{winInstaller}"
-        >
-        <br/>
-
-        <label for="linux-installer">Установщик Linux</label>
-        <input type="file" name="linux-installer" id="linux-installer"
-               th:field="*{linuxInstaller}"
-        >
-        <br/>
-
-        <label for="macos-installer">Установщик MacOS</label>
-        <input type="file" name="macos-installer" id="macos-installer"
-               th:field="*{macosInstaller}"
-        >
-        <br/>
-
-        <label for="program-header-img">Заголовочное изображение</label>
-        <input type="file" name="program-header-img" id="program-header-img" accept="image/jpeg"
-               th:field="*{headerImg}"
-        >
-        <br/>
-
-        <label for="screenshots">Скриншоты</label>
-        <input type="file" name="screenshots" id="screenshots" accept="image/jpeg" multiple
-               th:field="*{screenshots}"
-        >
-        <br/>
-
-        <span>Ключевые слова</span>
-        <ul>
-            <li th:each="tag, iterStat : ${allTags}">
-                <label>
-                    <span th:text="${tag.getName()}">TAG_NAME</span>
-                    <input type="range" min="0" max="10" step="1"
-                           th:value="${tag.degreeOfBelonging}"
-                           th:field="*{tags[__${iterStat.index}__].degreeOfBelonging}"
-                    >
-                </label>
-            </li>
-        </ul>
-
+<!--        <label for="logo">Лого</label>-->
+<!--        <input type="file" name="logo" id="logo" accept="image/jpeg"-->
+<!--               th:field="*{}">-->
+<!--        <br/>-->
+<!---->
+<!--        <label for="programHeaderImg">Заголовочное изображение</label>-->
+<!--        <input type="file" name="programHeaderImg" id="programHeaderImg" accept="image/jpeg">-->
+<!--               th:field="*{programMedia.programHeaderImg}">-->
+<!--        <br/>-->
+<!---->
+<!--        <label for="screenshots">Скриншоты</label>-->
+<!--        <input type="file" name="screenshots" id="screenshots" accept="image/jpeg" multiple>-->
+<!--               th:field="*{programMedia.screenshots}">-->
+<!--        <br/>-->
+<!---->
+<!--        <label for="winInstaller">Установщик Windows</label>-->
+<!--        <input type="file" name="winInstaller" id="winInstaller">-->
+<!--               th:field="*{programMedia.winInstaller}">-->
+<!--        <br/>-->
+<!---->
+<!--        <label for="linuxInstaller">Установщик Linux</label>-->
+<!--        <input type="file" name="linuxInstaller" id="linuxInstaller">-->
+<!--               th:field="*{programMedia.linuxInstaller}">-->
+<!--        <br/>-->
+<!---->
+<!--        <label for="macosInstaller">Установщик MacOS</label>-->
+<!--        <input type="file" name="macosInstaller" id="macosInstaller">-->
+<!--               th:field="*{programMedia.macosInstaller}">-->
+<!--        <br/>-->
+<!---->
+<!--        <span>Ключевые слова</span>-->
+<!--        <ul>-->
+<!--            <li th:each="tag : ${allTags}">-->
+<!--                <label>-->
+<!--                    <span th:text="${tag.getName()}">TAG_NAME</span>-->
+<!--                    <input type="range" min="0" max="10" step="1"-->
+<!--                           th:value="${tag.degreeOfBelonging}"-->
+<!--                           title="Чем правее ползунок, тем больше программа подходит этой категории"-->
+<!--                    >-->
+<!--                </label>-->
+<!--            </li>-->
+<!--        </ul>-->
+<!---->
         <input type="submit" value="Добавить игру" title="Добавить игру">
     </form>
 </body>

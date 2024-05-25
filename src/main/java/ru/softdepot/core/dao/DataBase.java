@@ -1,9 +1,11 @@
 package ru.softdepot.core.dao;
 
 import org.json.JSONObject;
+import org.springframework.stereotype.Component;
 
 import java.sql.Timestamp;
 import java.time.*;
+
 
 public class DataBase {
     private static String url = "jdbc:postgresql://localhost:5432/softdepot";

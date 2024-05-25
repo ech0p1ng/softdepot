@@ -5,8 +5,12 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.converter.HttpMessageConverter;
+import org.springframework.http.converter.StringHttpMessageConverter;
+import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
+import org.springframework.web.multipart.MultipartResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.ViewResolverRegistry;
@@ -15,6 +19,7 @@ import org.thymeleaf.spring6.SpringTemplateEngine;
 import org.thymeleaf.spring6.templateresolver.SpringResourceTemplateResolver;
 import org.thymeleaf.spring6.view.ThymeleafViewResolver;
 import javax.sql.DataSource;
+import java.util.List;
 
 //Вместо ApplicationContextMVC.xml
 
@@ -23,7 +28,6 @@ import javax.sql.DataSource;
 @EnableWebMvc
 public class SpringConfig implements WebMvcConfigurer {
     private final ApplicationContext applicationContext;
-    public final String uploadPath = "C:\\SoftDepot";
 
     @Autowired
     public SpringConfig(ApplicationContext applicationContext) {
@@ -74,6 +78,12 @@ public class SpringConfig implements WebMvcConfigurer {
         registry.addResourceHandler("/main_page/**").addResourceLocations("/WEB-INF/views/main_page/");
         registry.addResourceHandler("/default/**").addResourceLocations("/WEB-INF/views/default/");
         registry.addResourceHandler("/user/**").addResourceLocations("/WEB-INF/views/user/");
-//        registry.addResourceHandler("/program/**").addResourceLocations("file:/WEB-INF/views/program/");
+    }
+
+//    Конвертер для отправки объектов классов через return new ResponseEntity
+    @Override
+    public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
+        converters.add(new MappingJackson2HttpMessageConverter());
+        converters.add(new StringHttpMessageConverter());
     }
 }
