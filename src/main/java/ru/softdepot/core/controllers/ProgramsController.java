@@ -100,7 +100,6 @@ public class ProgramsController {
         }
         try {
             program = programDAO.getById(programId);
-            List<Program> programsInCart = cartDAO.getPrograms(CurrentUser.get().getId());
 
             if (cartDAO.containsProgram(CurrentUser.get().getId(), programId)) {
                 msg = "Программа " + program.getName() + " уже находится в корзине!";
@@ -116,6 +115,34 @@ public class ProgramsController {
             return new ResponseEntity<>(msg, responseHeaders, HttpStatus.NOT_FOUND);
         }
         return new ResponseEntity<>(msg, responseHeaders, HttpStatus.OK);
+    }
+
+    @GetMapping("/id{id}/remove-from-cart")
+    public ResponseEntity<?> removeFromCart(Model model, @PathVariable("id") int programId) {
+        responseHeaders.setContentType(MediaType.TEXT_PLAIN);
+        responseHeaders.set("Content-Type", "text/plain;charset=UTF-8");
+        Program program = null;
+        String msg = "Unexpected error";
+        if (CurrentUser.get() == null) {
+            msg = "Чтобы удалить из корзины программу необходимо войти в аккаунт.";
+            return new ResponseEntity<>(msg, responseHeaders, HttpStatus.BAD_REQUEST);
+        }
+        try {
+            program = programDAO.getById(programId);
+
+            if (cartDAO.containsProgram(CurrentUser.get().getId(), programId)) {
+                cartDAO.deleteProgram(CurrentUser.get().getId(), programId);
+                msg = "Программа " + program.getName() + " удалена из корзины!";
+                return new ResponseEntity<>(msg, responseHeaders, HttpStatus.OK);
+            }
+            else {
+                msg = "Программы " + program.getName() + " нет в вашей корзине";
+                return new ResponseEntity<>(msg, responseHeaders, HttpStatus.NOT_FOUND);
+            }
+        } catch (Exception e) {
+            msg = "Program with [id="+programId+"] does not exist.";
+            return new ResponseEntity<>(msg, responseHeaders, HttpStatus.NOT_FOUND);
+        }
     }
 
     @GetMapping("/get-cart")

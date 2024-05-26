@@ -16,6 +16,7 @@ public class Program {
     private int developerId;
     private String shortDescription;
     private List<Tag> tags;
+    private boolean inCart = false;
 
     private float averageEstimation;
     private String filesPath;
@@ -279,5 +280,13 @@ public class Program {
 
     public String getHeaderUrl() {
         return headerUrl;
+    }
+
+    public boolean isInCart() {
+        return inCart;
+    }
+
+    public void setInCart(boolean inCart) {
+        this.inCart = inCart;
     }
 }

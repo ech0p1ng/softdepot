@@ -72,7 +72,6 @@
     "Node.js.cart.js.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "Tomcat Server.Tomcat 10.1.23.executor": "Run",
-    "git-widget-placeholder": "master",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "D:/Проекты программирование/Мои проекты/Java/Spring MVC/CrudRestDao3",
     "list.type.of.created.stylesheet": "CSS",
@@ -220,7 +219,8 @@
       <workItem from="1716366988839" duration="22143000" />
       <workItem from="1716526499070" duration="8027000" />
       <workItem from="1716569433848" duration="3704000" />
-      <workItem from="1716620190763" duration="31568000" />
+      <workItem from="1716620190763" duration="31810000" />
+      <workItem from="1716710482289" duration="14208000" />
     </task>
     <servers />
   </component>

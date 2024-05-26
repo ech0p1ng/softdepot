@@ -78,7 +78,7 @@
                         <span class="price">
                             <span th:text="${program.getPriceAsString()}">GAME_PRICE</span>
                         </span>
-                        <button class="add-to-cart" style="z-index: 2;" th:attr="program-id=${program.getId()}" onclick="cart_handler()">
+                        <button class="add-to-cart" style="z-index: 2;" th:attr="program-id=${program.getId()}" onclick="add_to_cart_from_list(event)">
                             <span>Добавить в корзину</span>
                         </button>
                     </div>
@@ -93,16 +93,16 @@
                         <button id="cart-exit-button" class="exit-button button close-button"></button>
                     </div>
                     <div id="cart-games-list">
-                        <div th:each="program : ${programsInCart}" class="cart-game-row">
-                            <img class="preview" th:src="${program.getHeaderUrl()}" />
-                            <a class="cart-game-description" th:href="@{/program/id{id}(id=${program.getId()})}" target="_blank">
-                                <span class="cart-game-title" th:text="${program.getName()}">GAME_NAME</span>
-                            </a>
-                            <div class="cart-game-price">
-                                <span class="cart-game-price-title" th:text="${program.getPriceAsString()}">GAME_PRICE</span>
-                                <button class="cart-game-remove button"></button>
-                            </div>
-                        </div>
+<!--                        <div th:each="program : ${programsInCart}" class="cart-game-row">-->
+<!--                            <img class="preview" th:src="${program.getHeaderUrl()}" />-->
+<!--                            <a class="cart-game-description" th:href="@{/program/id{id}(id=${program.getId()})}" target="_blank">-->
+<!--                                <span class="cart-game-title" th:text="${program.getName()}">GAME_NAME</span>-->
+<!--                            </a>-->
+<!--                            <div class="cart-game-price">-->
+<!--                                <span class="cart-game-price-title" th:text="${program.getPriceAsString()}">GAME_PRICE</span>-->
+<!--                                <button class="cart-game-remove button"></button>-->
+<!--                            </div>-->
+<!--                        </div>-->
                     </div>
                     <div id="cart-total-title">
                         <span>Итого</span>
