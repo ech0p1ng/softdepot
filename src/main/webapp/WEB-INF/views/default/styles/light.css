@@ -1,6 +1,7 @@
 body {
     --bg-body: rgb(255, 255, 255);
     --bg-color: rgb(223, 223, 223);
+    --bg-color2: rgb(239, 239, 239);
     --bg-opacity: rgba(207, 207, 207, 0.4);
     --bg-main-opacity: rgba(207, 207, 207, 0);
     --bg-no-opacity: rgb(223, 223, 223);
@@ -27,4 +28,8 @@ body {
 
 .change-theme {
     background-image: url("/default/styles/svg/sun.svg");
+}
+
+.close-button {
+    background-image: url("/default/styles/svg/cross-black.svg");
 }

@@ -16,6 +16,7 @@ public class Program {
     private int developerId;
     private String shortDescription;
     private List<Tag> tags;
+    private boolean inCart = false;
 
     private float averageEstimation;
     private String filesPath;
@@ -27,6 +28,8 @@ public class Program {
     private MultipartFile headerImg;
     private MultipartFile[] screenshots;
     private MultipartFile logo;
+
+    private String headerUrl;
 
     public Program(int id, String name, BigDecimal price, String fullDescription,
                    int developerId, String shortDescription, List<Tag> tags) {
@@ -109,7 +112,6 @@ public class Program {
         else {
             return "Бесплатно";
         }
-
     }
 
     public void setPrice(BigDecimal price) {
@@ -224,11 +226,6 @@ public class Program {
         ));
     }
 
-    public String getHeaderUrl() {
-        return filesPath + "/header.jpg";
-    }
-
-
     public MultipartFile getWinInstaller() {
         return winInstaller;
     }
@@ -275,5 +272,21 @@ public class Program {
 
     public void setLogo(MultipartFile logo) {
         this.logo = logo;
+    }
+
+    public void setHeaderUrl(String headerUrl) {
+        this.headerUrl = headerUrl;
+    }
+
+    public String getHeaderUrl() {
+        return headerUrl;
+    }
+
+    public boolean isInCart() {
+        return inCart;
+    }
+
+    public void setInCart(boolean inCart) {
+        this.inCart = inCart;
     }
 }

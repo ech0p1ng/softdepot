@@ -3,31 +3,90 @@
 <head>
     <meta charset="UTF-8">
     <title>Soft Depot - Регистрация</title>
+    <link rel="stylesheet" href="/default/styles/base.css" />
+    <link id="color-scheme" rel="stylesheet" href="/default/styles/dark.css" />
+    <link rel="stylesheet" href="/user/registration/styles/index.css"/>
 </head>
 <body>
+<header>
+    <!-- форма поиска -->
+    <!--    <form method="get" id="search-form">-->
+    <!--        <div class="loupe"></div>-->
+    <!--        <input id="search" placeholder="Поиск..." />-->
+    <!--    </form>-->
+
+    <div class="header-buttons">
+        <!-- Кнопка "Домой" -->
+        <a id="main-button" class="button" th:href="@{/}">
+            <div class="logo"></div>
+            <span class="store-name" title="Главная страница">SOFT DEPOT</span>
+        </a>
+
+        <div class="right-buttons-panel">
+            <!-- Тема -->
+            <button class="change-theme button" title="Сменить тему" onclick="change_theme()"></button>
+
+            <!-- Корзина -->
+            <button class="shopping-basket button" title="Корзина"></button>
+
+            <!-- Профиль -->
+            <div th:if="${user == null}">
+                <a class="profile button"
+                   title="Войти"
+                   th:href="@{/sign-in}">
+                </a>
+            </div>
+            <div th:unless="${user == null}">
+                <div th:switch="${user.getUserType()}">
+                    <a th:case="${typeCustomer}"
+                       class="profile button"
+                       title="Профиль"
+                       th:href="@{/customer/id{id}(id=${user.getId()})}">
+                    </a>
+                    <a th:case="${typeAdministrator}"
+                       class="profile button"
+                       title="Профиль"
+                       th:href="@{/administrator/id{id}(id=${user.getId()})}">
+                    </a>
+                    <a th:case="${typeDeveloper}"
+                       class="profile button"
+                       title="Профиль"
+                       th:href="@{/developer/id{id}(id=${user.getId()})}">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<main>
     <form th:method="POST"
           th:action="@{/registration/check}"
     >
-        <p>
-            <label for="username">Имя пользователя:</label>
-            <input type="username" id="username" name="username">
-            <br/>
-            <label for="email">E-mail:</label>
-            <input type="email" id="email" name="email">
-            <br/>
-            <label for="password">Пароль:</label>
-            <input type="password" id="password" name="password">
-            <br/>
-            <label>
-                <input type="radio" name="userType" value="customer">
-                Покупатель
-            </label>
-            <label>
-                <input type="radio" name="userType" value="developer">
-                Разработчик
-            </label>
-            <input type="submit" title="Зарегистрироваться" value="Зарегистрироваться">
-        </p>
+        <span>Регистрация</span>
+        <input class="input-field" type="username" id="username" name="username" placeholder="Имя пользователя">
+        <br/>
+        <input class="input-field" type="email" id="email" name="email" placeholder="E-mail">
+        <br/>
+        <input class="input-field" type="password" id="password" name="password" placeholder="Пароль">
+        <br/>
+        <div class="radio-buttons-block">
+            <div class="radio-buttons-block-item">
+                <input type="radio" name="userType" value="customer" id="customer" checked>
+                <label for="customer">Покупатель</label>
+            </div>
+            <div class="radio-buttons-block-item">
+                <input type="radio" name="userType" value="developer" id="developer">
+                <label for="developer">Разработчик</label>
+            </div>
+        </div>
+        <input class="button" type="submit" title="Зарегистрироваться" value="Зарегистрироваться">
     </form>
+</main>
+<footer>
+    <span>Курсовая работа студента группы 21ПИнж(б)РПиС Петрова Алексея<br />2024 г.</span>
+</footer>
+<script src="/default/scripts/jquery-3.7.1.min.js"></script>
+<script src="/default/scripts/theme.js"></script>
+<script src="/default/scripts/main.js"></script>
 </body>
 </html>

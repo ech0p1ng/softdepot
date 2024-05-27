@@ -33,8 +33,10 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="HTML File" />
+        <option value="JavaScript File" />
+        <option value="Class" />
+        <option value="CSS File" />
       </list>
     </option>
   </component>
@@ -67,11 +69,12 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "DefaultHtmlFileTemplate": "HTML File",
+    "Node.js.cart.js.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "Tomcat Server.Tomcat 10.1.23.executor": "Run",
-    "git-widget-placeholder": "master",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Проекты программирование/Мои проекты/Java/Spring MVC/CrudRestDao3",
+    "last_opened_file_path": "C:/Проекты программирование/Мои проекты/Java/Spring MVC/SoftDepot/softdepot/src/main/webapp/WEB-INF/views/user/registration",
+    "list.type.of.created.stylesheet": "CSS",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -91,8 +94,12 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Проекты программирование\Мои проекты\Java\Spring MVC\SoftDepot\softdepot\src\main\webapp\WEB-INF\views\user\registration" />
       <recent name="D:\Проекты программирование\Мои проекты\Java\Spring MVC\softdepot\softdepot\src\main\webapp\WEB-INF\views\user\developer" />
       <recent name="D:\Проекты программирование\Мои проекты\Java\Spring MVC\softdepot\softdepot\src\main\webapp\WEB-INF\views\user\customer" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\Проекты программирование\Мои проекты\Java\Spring MVC\softdepot\softdepot\src\main\webapp\WEB-INF\views\default\scripts" />
     </key>
   </component>
   <component name="RunManager">
@@ -212,6 +219,12 @@
       <workItem from="1716439489242" duration="10150000" />
       <workItem from="1716366988839" duration="22143000" />
       <workItem from="1716526499070" duration="8177000" />
+      <workItem from="1716526499070" duration="8027000" />
+      <workItem from="1716569433848" duration="3704000" />
+      <workItem from="1716620190763" duration="31810000" />
+      <workItem from="1716710482289" duration="14208000" />
+      <workItem from="1716799524011" duration="5244000" />
+      <workItem from="1716817403878" duration="4059000" />
     </task>
     <servers />
   </component>

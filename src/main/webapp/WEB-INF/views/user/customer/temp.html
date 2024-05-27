@@ -19,6 +19,10 @@
     <span th:text="'Баланс: ' + ${customer.getBalance() + ' руб.'}">CUSTOMER_BALANCE</span>
     <br/>
 
+    <form method="post" th:action="@{/log-out}">
+        <input type="submit" value="Выход">
+    </form>
+
     <span>Приобретеныне программы:</span>
     <ul>
         <li>

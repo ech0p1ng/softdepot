@@ -123,6 +123,7 @@ public class ProgramDAO implements DAO<Program> {
                         getTags(resultSet.getInt("id"))
                 );
 
+                program.setHeaderUrl(resultSet.getString("header_url"));
                 program.setAverageEstimation(getAverageEstimation(program));
 
                 //Преобразование java.sql.Array в List<URL>
@@ -176,7 +177,7 @@ public class ProgramDAO implements DAO<Program> {
                         resultSet.getString("short_description"),
                         getTags(resultSet.getInt("id"))
                 );
-
+                program.setHeaderUrl(resultSet.getString("header_url"));
                 program.setAverageEstimation(getAverageEstimation(program));
                 return program;
             }
@@ -214,6 +215,7 @@ public class ProgramDAO implements DAO<Program> {
                         resultSet.getString("short_description"),
                         getTags(resultSet.getInt("id"))
                 );
+                program.setHeaderUrl(resultSet.getString("header_url"));
                 program.setAverageEstimation(getAverageEstimation(program));
                 programs.add(program);
             }
@@ -249,6 +251,7 @@ public class ProgramDAO implements DAO<Program> {
                         resultSet.getString("short_description"),
                         getTags(resultSet.getInt("id"))
                 );
+                program.setHeaderUrl(resultSet.getString("header_url"));
                 program.setAverageEstimation(getAverageEstimation(program));
                 programs.add(program);
             }

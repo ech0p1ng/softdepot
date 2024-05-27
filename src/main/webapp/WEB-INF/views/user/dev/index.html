@@ -17,7 +17,11 @@
     <span th:text="'URL аватарки: ' + ${developer.getProfileImgUrl()}">DEVELOPER_PROFILE_IMG_URL</span>
     <br/>
 
-    <a th:href="@{/developer/id{id}/upload-program(id=${developer.getId()})}">Добавить программу</a>
+    <form method="post" th:action="@{/log-out}">
+        <input type="submit" value="Выход">
+    </form>
+
+    <a th:href="@{/program/new}">Добавить программу</a>
 
     <span>Добавленные программы</span>
     <ul>

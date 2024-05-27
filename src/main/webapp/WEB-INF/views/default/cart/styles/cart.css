@@ -18,13 +18,14 @@
     position: relative;
     width: 50%;
     height: 80%;
-    background-color: var(--border-color);
+    background-color: var(--bg-color2);
     border-radius: 10px;
 }
 
-.exit-button {
+.close-button {
     height: 40px;
     width: 40px;
+    background-size: 30px 30px;
 }
 
 #cart-header {
@@ -91,6 +92,9 @@
     width: 40px;
     background-color: darkred;
     margin: 10px;
+    background-image: url("/default/styles/svg/cross-black.svg");
+    background-size: 30px 30px;
+    background-position: center;
 }
 
 .cart-game-remove:hover {
@@ -101,7 +105,7 @@
     display: flex;
     flex-direction: row;
     border-radius: 10px;
-    background-color: var(--border-color);
+    background-color: var(--bg-color2);
     height: 60px;
     align-items: center;
     margin-right: 10px;

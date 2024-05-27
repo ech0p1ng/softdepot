@@ -7,7 +7,6 @@
         <link rel="stylesheet" href="/default/styles/base.css" />
         <link rel="stylesheet" href="/program/styles/index.css" />
         <link id="color-scheme" rel="stylesheet" href="/default/styles/dark.css" />
-
         <title th:text="${'Soft Depot - ' + program.getName()}">Soft Depot - GAME_NAME</title>
     </head>
     <body>
@@ -20,7 +19,7 @@
 
             <div class="header-buttons">
                 <!-- Кнопка "Домой" -->
-                <a class="main-button button" th:href="@{/}">
+                <a id="main-button" class="button" th:href="@{/}">
                     <div class="logo"></div>
                     <span class="store-name" title="Главная страница">SOFT DEPOT</span>
                 </a>
@@ -33,7 +32,31 @@
                     <button class="shopping-basket button" title="Корзина"></button>
 
                     <!-- Профиль -->
-                    <button class="profile button" title="Профиль"></button>
+                    <div th:if="${user == null}">
+                        <a class="profile button"
+                           title="Войти"
+                           th:href="@{/sign-in}">
+                        </a>
+                    </div>
+                    <div th:unless="${user == null}">
+                        <div th:switch="${user.getUserType()}">
+                            <a th:case="${typeCustomer}"
+                               class="profile button"
+                               title="Профиль"
+                               th:href="@{/customer/id{id}(id=${user.getId()})}">
+                            </a>
+                            <a th:case="${typeAdministrator}"
+                               class="profile button"
+                               title="Профиль"
+                               th:href="@{/administrator/id{id}(id=${user.getId()})}">
+                            </a>
+                            <a th:case="${typeDeveloper}"
+                               class="profile button"
+                               title="Профиль"
+                               th:href="@{/developer/id{id}(id=${user.getId()})}">
+                            </a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </header>
@@ -76,7 +99,7 @@
                 </span>
                 <div id="price-and-buy">
                     <span id="price" th:text="${program.getPriceAsString()}"></span>
-                    <button id="buy-button">Добавить в корзину</button>
+                    <button class="add-to-cart" onclick="cart_handler()" th:attr="program-id=${program.getId()}">Добавить в корзину</button>
                 </div>
             </div>
             <h1 id="description-header">Об игре</h1>
@@ -91,7 +114,7 @@
         <script src="/default/scripts/jquery-3.7.1.min.js"></script>
         <script src="/default/scripts/theme.js"></script>
         <script src="/default/scripts/game-highlights.js"></script>
-        <script src="/default/scripts/game.js"></script>
         <script src="/default/cart/scripts/cart.js"></script>
+        <script src="/default/scripts/main.js"></script>
     </body>
 </html>
