@@ -9,7 +9,7 @@ import ru.softdepot.core.dao.AdministratorDAO;
 import ru.softdepot.core.models.Administrator;
 
 @Controller
-@RequestMapping("/admin")
+@RequestMapping("/administrator")
 public class AdministratorsController {
     private final AdministratorDAO administratorDAO;
 

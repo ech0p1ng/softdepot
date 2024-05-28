@@ -3,9 +3,13 @@ package ru.softdepot.core.models;
 public class User {
     public enum Type {Customer, Developer, Administrator}
     private int id;
+
     private String email;
+
     private String name;
+
     private String password;
+
     private Type userType;
 
     public User(int id, String email, String password, String name, Type userType) {
@@ -39,7 +43,7 @@ public class User {
     }
 
     public void setPassword(String password) {
-        this.password = password;
+       this.password = password;
     }
 
     public Type getUserType() {
