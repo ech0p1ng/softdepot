@@ -43,7 +43,6 @@ public class CustomersController {
             model.addAttribute("purchasedPrograms", purchasedPrograms);
             model.addAttribute("reviews", reviews);
             model.addAttribute("programsInCart", programsInCart);
-//        return "user/customer/index";
-        return "user/customer/temp";
+        return "user/customer/index";
     }
 }

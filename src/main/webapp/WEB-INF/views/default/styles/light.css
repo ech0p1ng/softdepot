@@ -12,10 +12,16 @@ body {
 
 .shopping-basket {
     background-image: url("/default/styles/svg/shopping-basket-black.svg");
+    background-size: 30px 30px;
+    background-repeat: no-repeat;
+    background-position: center;
 }
 
 .profile {
     background-image: url("/default/styles/svg/profile-black.svg");
+    background-size: 30px 30px;
+    background-repeat: no-repeat;
+    background-position: center;
 }
 
 .logo {
@@ -28,8 +34,35 @@ body {
 
 .change-theme {
     background-image: url("/default/styles/svg/sun.svg");
+    background-size: 30px 30px;
+    background-repeat: no-repeat;
+    background-position: center;
 }
 
 .close-button {
     background-image: url("/default/styles/svg/cross-black.svg");
+    background-size: 30px 30px;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.profile-exit-button {
+    background-image: url("/default/styles/svg/exit-black.svg");
+    background-size: 30px 30px;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.save-button {
+    background-image: url("/default/styles/svg/save-black.svg");
+    background-size: 30px 30px;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.delete-button {
+    background-image: url("/default/styles/svg/cross-black.svg");
+    background-size: 30px 30px;
+    background-repeat: no-repeat;
+    background-position: center;
 }

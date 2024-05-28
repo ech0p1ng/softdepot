@@ -26,35 +26,35 @@
             <!-- Тема -->
             <button class="change-theme button" title="Сменить тему" onclick="change_theme()"></button>
 
-            <!-- Корзина -->
-            <button class="shopping-basket button" title="Корзина"></button>
+<!--            &lt;!&ndash; Корзина &ndash;&gt;-->
+<!--            <button class="shopping-basket button" title="Корзина"></button>-->
 
-            <!-- Профиль -->
-            <div th:if="${user == null}">
-                <a class="profile button"
-                   title="Войти"
-                   th:href="@{/sign-in}">
-                </a>
-            </div>
-            <div th:unless="${user == null}">
-                <div th:switch="${user.getUserType()}">
-                    <a th:case="${typeCustomer}"
-                       class="profile button"
-                       title="Профиль"
-                       th:href="@{/customer/id{id}(id=${user.getId()})}">
-                    </a>
-                    <a th:case="${typeAdministrator}"
-                       class="profile button"
-                       title="Профиль"
-                       th:href="@{/administrator/id{id}(id=${user.getId()})}">
-                    </a>
-                    <a th:case="${typeDeveloper}"
-                       class="profile button"
-                       title="Профиль"
-                       th:href="@{/developer/id{id}(id=${user.getId()})}">
-                    </a>
-                </div>
-            </div>
+<!--            &lt;!&ndash; Профиль &ndash;&gt;-->
+<!--            <div th:if="${user == null}">-->
+<!--                <a class="profile button"-->
+<!--                   title="Войти"-->
+<!--                   th:href="@{/sign-in}">-->
+<!--                </a>-->
+<!--            </div>-->
+<!--            <div th:unless="${user == null}">-->
+<!--                <div th:switch="${user.getUserType()}">-->
+<!--                    <a th:case="${typeCustomer}"-->
+<!--                       class="profile button"-->
+<!--                       title="Профиль"-->
+<!--                       th:href="@{/customer/id{id}(id=${user.getId()})}">-->
+<!--                    </a>-->
+<!--                    <a th:case="${typeAdministrator}"-->
+<!--                       class="profile button"-->
+<!--                       title="Профиль"-->
+<!--                       th:href="@{/administrator/id{id}(id=${user.getId()})}">-->
+<!--                    </a>-->
+<!--                    <a th:case="${typeDeveloper}"-->
+<!--                       class="profile button"-->
+<!--                       title="Профиль"-->
+<!--                       th:href="@{/developer/id{id}(id=${user.getId()})}">-->
+<!--                    </a>-->
+<!--                </div>-->
+<!--            </div>-->
         </div>
     </div>
 </header>

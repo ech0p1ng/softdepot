@@ -53,6 +53,10 @@ public class ProgramsController {
         try {
             Program program = programDAO.getById(id);
             model.addAttribute("program", program);
+            model.addAttribute("user", CurrentUser.get());
+            model.addAttribute("typeCustomer", User.Type.Customer);
+            model.addAttribute("typeAdministrator", User.Type.Administrator);
+            model.addAttribute("typeDeveloper", User.Type.Developer);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -94,8 +98,8 @@ public class ProgramsController {
         responseHeaders.set("Content-Type", "text/plain;charset=UTF-8");
         Program program = null;
         String msg = "Unexpected error";
-        if (CurrentUser.get() == null) {
-            msg = "Чтобы добавить в корзину программу необходимо войти в аккаунт.";
+        if (CurrentUser.get() == null || CurrentUser.get().getUserType() != User.Type.Customer) {
+            msg = "Чтобы добавить в корзину программу, необходимо войти в аккаунт покупателя.";
             return new ResponseEntity<>(msg, responseHeaders, HttpStatus.BAD_REQUEST);
         }
         try {

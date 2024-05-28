@@ -126,7 +126,10 @@
 
 .cart-game-description {
     /* width: 100%; */
+    /*display: flex;*/
+    align-content: center;
     padding: 10px;
+    height: 100%;
     flex: 1;
     text-decoration: none;
     color: var(--text-color);

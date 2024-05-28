@@ -4,25 +4,24 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="stylesheet" href="/default/styles/base.css" />
-        <link rel="stylesheet" href="/mainPage/styles/index.css" />
-        <link rel="stylesheet" href="/default/cart/styles/cart.css" />
         <link id="color-scheme" rel="stylesheet" href="/default/styles/dark.css" />
+        <link rel="stylesheet" href="/default/cart/styles/cart.css" />
         <!-- <link rel="stylesheet" href="styles/dark.css" /> -->
         <title>Soft Depot</title>
     </head>
     <body>
         <header>
             <!-- форма поиска -->
-            <form method="get" id="search-form">
-                <div class="loupe"></div>
-                <input id="search" placeholder="Поиск..." />
-            </form>
+<!--            <form method="get" id="search-form">-->
+<!--                <div class="loupe"></div>-->
+<!--                <input id="search" placeholder="Поиск..." />-->
+<!--            </form>-->
 
             <div class="header-buttons">
                 <!-- Кнопка "Домой" -->
-                <a class="main-button button" th:href="@{/}">
+                <a id="main-button" class="button" th:href="@{/}">
                     <div class="logo"></div>
-                    <span class="store-name" title="SOFT DEPOT">SOFT DEPOT</span>
+                    <span class="store-name" title="Главная страница">SOFT DEPOT</span>
                 </a>
 
                 <div class="right-buttons-panel">
@@ -32,8 +31,8 @@
                     <!-- Корзина -->
                     <button class="shopping-basket button" title="Корзина" onclick="show_cart()"></button>
 
-                    <!-- Профиль -->
-                    <button class="profile button" title="Профиль"></button>
+                    <!-- Выход -->
+                    <a class="profile-exit-button button" title="Выход" th:href="@{/log-out}"></a>
                 </div>
             </div>
         </header>
@@ -96,9 +95,7 @@
     </body>
 
     <script src="/default/scripts/jquery-3.7.1.min.js"></script>
-    <script src="/default/scripts/game.js"></script>
-<!--    <script src="/mainPage/scripts/cart.js"></script>-->
-    <script src="/mainPage/cart/scripts/cart.js"></script>
-    <script src="/mainPage/scripts/theme.js"></script>
+    <script src="/default/cart/scripts/cart.js"></script>
+    <script src="/default/scripts/theme.js"></script>
     <script src="/default/scripts/game-highlights.js"></script>
 </html>

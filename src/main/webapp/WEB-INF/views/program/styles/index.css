@@ -137,3 +137,17 @@ body::-webkit-scrollbar-track {
 .game-name-big {
     margin-top: 0px;
 }
+
+.remove-from-cart {
+    background-color: darkred;
+    border: none;
+    padding: 10px;
+    color: var(--text-bright-color);
+    border-radius: 10px;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.remove-from-cart:hover {
+    cursor: pointer;
+    background-color: red;
+}

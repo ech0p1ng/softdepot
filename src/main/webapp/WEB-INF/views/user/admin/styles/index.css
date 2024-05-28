@@ -1,0 +1,105 @@
+main {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.buttons-side-panel {
+    list-style-type: none;
+    width: 30%;
+}
+
+.buttons-side-panel ul {
+    margin: 0;
+    padding: 0;
+}
+
+.buttons-side-panel ul:not(:first-child) {
+    margin-top: 10px;
+}
+
+.buttons-side-panel .button {
+    height: 40px;
+    text-decoration: none;
+    color: var(--text-color);
+}
+
+.main-panel {
+    margin-left: 10px;
+    width: 100%;
+}
+
+.header {
+    align-content: center;
+    height: 40px;
+}
+
+.header-text {
+    font-size: 28px;
+}
+
+.content {
+    background-color: var(--bg-opacity);
+    border-radius: 10px;
+    margin-top: 10px;
+    padding: 10px;
+    height: calc(100% - 70px);
+}
+
+/* КАТЕГОРИИ */
+
+.category-row {
+    /* background-color: red; */
+    width: 100%;
+    height: 40px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.category-row .category-name {
+    border-radius: 10px;
+    background: none;
+    border: none;
+    width: 100%;
+    background-color: var(--bg-opacity);
+    color: var(--text-color);
+    padding: 10px;
+    font-size: 14px;
+}
+
+.content :not(:first-child, .button, .category-row-buttons) {
+    margin-top: 10px;
+}
+
+.category-row-buttons .button {
+    height: 40px;
+    width: 40px;
+    margin-left: 10px;
+}
+
+.category-row-buttons {
+    display: flex;
+    border-radius: 10px;
+    flex-direction: row;
+}
+
+.delete-button {
+    height: 40px;
+    width: 40px;
+    background-color: darkred;
+    background-size: 30px 30px;
+    background-position: center;
+}
+
+.delete-button:hover {
+    background-color: red;
+}
+
+.save-button {
+    background-size: 30px 30px;
+}
+
+.add-category-button {
+    height: 40px;
+}

@@ -196,8 +196,8 @@ public class UsersController {
         return "redirect:/";
     }
 
-    @PostMapping("/log-out")
-    public String logOut(HttpServletRequest request) {
+    @GetMapping("/log-out")
+    public String logOut() {
         CurrentUser.set(null);
         return "redirect:/";
     }
