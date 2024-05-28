@@ -1,11 +1,13 @@
 function set_add_to_cart_style_main_page(element){
-    element.css("background-color", "darkgreen");
+    // element.css("background-color", "darkgreen");
+    element.css("class", "add-to-cart");
     element.html("<span>Добавить в корзину</span>");
     element.attr("onclick", "add_to_cart_from_list(event)");
 }
 
 function set_remove_from_cart_style_main_page(element){
-    element.css("background-color", "darkred");
+    // element.css("background-color", "darkred");
+    element.attr("class", "remove-from-cart");
     element.html("<span>Удалить из корзины</span>");
     element.attr("onclick", "remove_from_cart_from_list(event)");
 }
