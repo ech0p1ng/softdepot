@@ -1,73 +1,73 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
+<head>
+    <meta charset="UTF-8" />
 
-        <link rel="stylesheet" href="/default/styles/base.css" />
-        <link rel="stylesheet" href="/user/admin/styles/index.css" />
-        <link id="color-scheme" rel="stylesheet" href="/default/styles/dark.css" />
-        <title>Soft Depot - Администратор</title>
-    </head>
-    <body>
-        <header>
-            <div class="header-buttons">
-                <!-- Кнопка "Домой" -->
-                <a id="main-button" class="button" th:href="@{/}">
-                    <div class="logo"></div>
-                    <span class="store-name" title="Главная страница">SOFT DEPOT</span>
-                </a>
+    <link rel="stylesheet" href="/default/styles/base.css" />
+    <link rel="stylesheet" href="/user/admin/styles/index.css" />
+    <link id="color-scheme" rel="stylesheet" href="/default/styles/dark.css" />
+    <title>Soft Depot - Администратор</title>
+</head>
+<body>
+<header>
+    <div class="header-buttons">
+        <!-- Кнопка "Домой" -->
+        <a id="main-button" class="button" th:href="@{/}">
+            <div class="logo"></div>
+            <span class="store-name" title="Главная страница">SOFT DEPOT</span>
+        </a>
 
-                <div class="right-buttons-panel">
-                    <!-- Тема -->
-                    <button class="change-theme button" title="Сменить тему" onclick="change_theme()"></button>
+        <div class="right-buttons-panel">
+            <!-- Тема -->
+            <button class="change-theme button" title="Сменить тему" onclick="change_theme()"></button>
 
-                    <!-- Выход -->
-                    <a class="profile-exit-button button" title="Выход" th:href="@{/log-out}"></a>
+            <!-- Выход -->
+            <a class="profile-exit-button button" title="Выход" th:href="@{/log-out}"></a>
+        </div>
+    </div>
+</header>
+<main>
+    <li class="buttons-side-panel">
+        <ul>
+            <a class="button" th:href="@{/administrator/id{id}(id=${admin.getId()})}">Главная</a>
+        </ul>
+        <ul>
+            <a class="button" th:href="@{/administrator/id{id}/categories(id=${admin.getId()})}">Категории</a>
+        </ul>
+        <ul>
+            <a class="button" th:href="@{/administrator/id{id}/programs(id=${admin.getId()})}">Товары</a>
+        </ul>
+        <ul>
+            <a class="button" th:href="@{/administrator/id{id}/purchases(id=${admin.getId()})}">Заказы</a>
+        </ul>
+        <ul>
+            <a class="button" th:href="@{/administrator/id{id}/customers(id=${admin.getId()})}">Покупатели</a>
+        </ul>
+        <ul>
+            <a class="button" th:href="@{/administrator/id{id}/developers(id=${admin.getId()})}">Разработчики</a>
+        </ul>
+        <ul>
+            <a class="button" th:href="@{/administrator/id{id}/admins(id=${admin.getId()})}">Администраторы</a>
+        </ul>
+    </li>
+    <div class="main-panel">
+        <div class="header">
+            <span class="header-text">Категории</span>
+        </div>
+        <div class="content">
+            <div class="button add-category-button">Добавить категорию</div>
+            <div class="category-row" th:each="tag : ${tags}">
+                <input type="text" class="category-name"  th:attr="${tag.getId()}" />
+                <div class="category-row-buttons">
+                    <button class="button save-button"></button>
+                    <button class="button delete-button"></button>
                 </div>
             </div>
-        </header>
-        <main>
-            <li class="buttons-side-panel">
-                <ul>
-                    <a class="button" th:href="@{/administrator/id{id}(id=${user.getId()})}">Главная</a>
-                </ul>
-                <ul>
-                    <a class="button" th:href="@{/administrator/id{id}/categories(id=${user.getId()})}">Категории</a>
-                </ul>
-                <ul>
-                    <a class="button" th:href="@{/administrator/id{id}/programs(id=${user.getId()})}">Товары</a>
-                </ul>
-                <ul>
-                    <a class="button" th:href="@{/administrator/id{id}/purchases(id=${user.getId()})}">Заказы</a>
-                </ul>
-                <ul>
-                    <a class="button" th:href="@{/administrator/id{id}/customers(id=${user.getId()})}">Покупатели</a>
-                </ul>
-                <ul>
-                    <a class="button" th:href="@{/administrator/id{id}/developers(id=${user.getId()})}">Разработчики</a>
-                </ul>
-                <ul>
-                    <a class="button" th:href="@{/administrator/id{id}/admins(id=${user.getId()})}">Администраторы</a>
-                </ul>
-            </li>
-            <div class="main-panel">
-                <div class="header">
-                    <span class="header-text">Категории</span>
-                </div>
-                <div class="content">
-                    <div class="button add-category-button">Добавить категорию</div>
-                    <div class="category-row">
-                        <input type="text" class="category-name" />
-                        <div class="category-row-buttons">
-                            <button class="button save-button"></button>
-                            <button class="button delete-button"></button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </main>
-    </body>
-    <script src="/default/scripts/jquery-3.7.1.min.js"></script>
-    <script src="/default/scripts/theme.js"></script>
-    <script src="/default/scripts/main.js"></script>
+        </div>
+    </div>
+</main>
+</body>
+<script src="/default/scripts/jquery-3.7.1.min.js"></script>
+<script src="/default/scripts/main.js"></script>
+<script src="/default/scripts/theme.js"></script>
 </html>

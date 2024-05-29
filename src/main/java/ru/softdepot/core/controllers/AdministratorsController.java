@@ -41,8 +41,6 @@ public class AdministratorsController {
             e.printStackTrace();
         }
 
-        model.addAttribute("user", CurrentUser.get());
-
         return "user/admin/index";
     }
 
@@ -56,8 +54,8 @@ public class AdministratorsController {
 
         try {
             Administrator admin = administratorDAO.getById(id);
-            model.addAttribute("admin", admin);
             List<Tag> tags = tagDAO.getAll();
+            model.addAttribute("admin", admin);
             model.addAttribute("tags", tags);
 
         } catch (Exception e) {
