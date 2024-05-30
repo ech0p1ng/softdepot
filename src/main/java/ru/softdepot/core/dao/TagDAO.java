@@ -120,7 +120,7 @@ public class TagDAO implements DAO<Tag>{
 
         try {
             PreparedStatement statement = connection.prepareStatement(
-                "SELECT * FROM tag"
+                "SELECT * FROM tag ORDER BY id"
             );
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()) {
@@ -148,5 +148,10 @@ public class TagDAO implements DAO<Tag>{
             e.printStackTrace();
         }
         return exists;
+    }
+
+    public boolean exists(int tagId){
+        Tag tag = getById(tagId);
+        return tag != null;
     }
 }
