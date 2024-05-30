@@ -37,9 +37,9 @@
             </div>
         </header>
         <main>
-            <div id="games-list" th:each="program : ${programs}">
-
-                <div class="game-row" style="z-index: 1;">
+<!--            Приобретенные программы-->
+            <div id="games-list">
+                <div class="game-row" style="z-index: 1;" th:each="program : ${purchasedPrograms}">
                     <img class="preview" th:src="${program.getHeaderUrl()}">
                     <a th:href="@{/program/id{id}(id=${program.getId()})}" target="_blank" class="description">
                         <div>
@@ -68,8 +68,7 @@
                         <span id="cart-title">Корзина</span>
                         <button id="cart-exit-button" class="exit-button button close-button"></button>
                     </div>
-                    <div id="cart-games-list" th:each="program : ${programs}">
-
+                    <div id="cart-games-list" th:each="program : ${programsInCart}">
                         <div class="cart-game-row">
                             <img class="preview" src="games/BeamNG_drive/images/header.jpg" />
                             <a class="cart-game-description" href="games/BeamNG_drive/index.html">
@@ -89,9 +88,9 @@
                 </div>
             </div>
         </main>
-        <footer>
-            <span>Лабораторная работа №3 студента группы 21ПИнж(б)РПиС Петрова Алексея<br />5.04.2024</span>
-        </footer>
+<!--        <footer>-->
+<!--            <span>Лабораторная работа №3 студента группы 21ПИнж(б)РПиС Петрова Алексея<br />5.04.2024</span>-->
+<!--        </footer>-->
     </body>
 
     <script src="/default/scripts/jquery-3.7.1.min.js"></script>

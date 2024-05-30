@@ -206,4 +206,21 @@ public class PurchaseDAO implements DAO<Purchase> {
 
         return exists;
     }
+
+    public List<Purchase> getAll() {
+        List<Purchase> purchases = new ArrayList<>();
+        try {
+            PreparedStatement statement = connection.prepareStatement(
+                    "SELECT * FROM purchase"
+            );
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                Purchase purchase = getById(resultSet.getInt("id"));
+                purchases.add(purchase);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return purchases;
+    }
 }

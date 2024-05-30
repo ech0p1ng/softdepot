@@ -69,24 +69,31 @@ function delete_tag(event) {
     console.log(tag_id);
     console.log(tag_name);
 
-    let data = {
-        id: tag_id,
-        name: tag_name
-    };
-    $.ajax({
-        type: 'POST',
-        url: '/tag/delete-tag/id' + tag_id,
-        data: JSON.stringify(data),
-        contentType: "application/json; charset=utf-8",
-        success: function (response) {
-            console.log(response);
-            update_tags();
-        },
-        error: function (response) {
-            console.log(response);
-            update_tags();
-        }
-    });
+    let result = false;
+    if (tag_name === "") result = true;
+    else result = confirm('Вы действительно хотите удалить категорию "'+ tag_name+'"?');
+
+    if (result) {
+        let data = {
+            id: tag_id,
+            name: tag_name
+        };
+
+        $.ajax({
+            type: 'POST',
+            url: '/tag/delete-tag/id' + tag_id,
+            data: JSON.stringify(data),
+            contentType: "application/json; charset=utf-8",
+            success: function (response) {
+                console.log(response);
+                update_tags();
+            },
+            error: function (response) {
+                console.log(response);
+                update_tags();
+            }
+        });
+    }
 }
 
 function add_tag_row(tag_name, tag_id) {

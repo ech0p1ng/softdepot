@@ -58,12 +58,16 @@
     "Tomcat Server.Tomcat 10.1.23.executor": "Run",
     "git-widget-placeholder": "master",
     "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "D:/Проекты программирование/Мои проекты/Java/Spring MVC/softdepot/softdepot/src/main/webapp/WEB-INF/views/user/admin",
     "list.type.of.created.stylesheet": "CSS",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
     "settings.editor.selected.configurable": "project.propVCSSupport.DirectoryMappings",
     "vue.rearranger.settings.migration": "true"
   },
@@ -73,6 +77,11 @@
     ]
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Проекты программирование\Мои проекты\Java\Spring MVC\softdepot\softdepot\src\main\webapp\WEB-INF\views\user\admin" />
+    </key>
+  </component>
   <component name="RunManager">
     <configuration name="Tomcat 10.1.23" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 10.1.23" ALTERNATIVE_JRE_ENABLED="false" nameIsGenerated="true">
       <option name="UPDATING_POLICY" value="restart-server" />
@@ -182,7 +191,7 @@
       <option name="presentableId" value="Default" />
       <updated>1716977815455</updated>
       <workItem from="1716977817654" duration="3600000" />
-      <workItem from="1717064343814" duration="7844000" />
+      <workItem from="1717064343814" duration="20316000" />
     </task>
     <servers />
   </component>
