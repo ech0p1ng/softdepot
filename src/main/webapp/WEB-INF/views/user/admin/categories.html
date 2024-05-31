@@ -55,14 +55,17 @@
             <span class="header-text">Категории</span>
         </div>
         <div class="content">
-            <div class="button add-category-button">Добавить категорию</div>
-            <div class="category-row" th:each="tag : ${tags}">
-                <input type="text" class="category-name"  th:attr="${tag.getId()}" />
-                <div class="category-row-buttons">
-                    <button class="button save-button"></button>
-                    <button class="button delete-button"></button>
-                </div>
+            <div class="button add-category-button" onclick="add_tag_row('', -1)">Добавить категорию</div>
+            <div class="tags-rows">
+
             </div>
+<!--            <div th:each="tag : ${tags}" class="category-row">-->
+<!--                <input type="text" class="category-name" th:value="${tag.getName()}" />-->
+<!--                <div class="category-row-buttons">-->
+<!--                    <button class="button save-button" th:attr="tag-id=${tag.getId()}" onclick="save_tag(event)"></button>-->
+<!--                    <button class="button delete-button" th:attr="tag-id=${tag.getId()}" onclick="delete_tag(event)"></button>-->
+<!--                </div>-->
+<!--            </div>-->
         </div>
     </div>
 </main>
@@ -70,4 +73,5 @@
 <script src="/default/scripts/jquery-3.7.1.min.js"></script>
 <script src="/default/scripts/main.js"></script>
 <script src="/default/scripts/theme.js"></script>
+<script src="/user/admin/scripts/categories.js"></script>
 </html>

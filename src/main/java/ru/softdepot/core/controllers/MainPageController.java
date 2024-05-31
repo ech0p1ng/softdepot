@@ -31,6 +31,10 @@ public class MainPageController {
     public String mainPage(Model model){
         List<Program> programs = programDAO.getAll();
 
+        for (Program program : programs) {
+            System.out.println(program.getName());
+        }
+
         if (CurrentUser.get() != null) {
             if (CurrentUser.get().getUserType() == User.Type.Customer) {
                 for (Program program : programs) {

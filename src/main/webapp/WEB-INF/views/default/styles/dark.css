@@ -1,11 +1,12 @@
 body {
     --bg-body: rgb(16, 16, 16);
-    --bg-color2: rgb(32, 32, 32);
+    --bg-color2: rgb(36, 36, 36);
     --bg-color: rgb(64, 64, 64);
     --bg-opacity: rgba(64, 64, 64, 0.4);
     --bg-main-opacity: rgba(64, 64, 64, 0);
     --bg-no-opacity: rgb(64, 64, 64);
     --foreground-color: rgb(80, 80, 80);
+    --href-color: rgb(32,128,255);
     --text-color: white;
     --text-bright-color: white;
 }

@@ -10,6 +10,7 @@ import ru.softdepot.core.models.Customer;
 import ru.softdepot.core.models.Program;
 import ru.softdepot.core.models.Review;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -30,19 +31,23 @@ public class CustomersController {
             purchasedPrograms = customerDAO.getPurchasedPrograms(customer);
         } catch (Exception e) {
             e.printStackTrace();
+            purchasedPrograms = new ArrayList<>();
         }
+
         List<Review> reviews = customerDAO.getAllReviewsByCustomer(customer);
-            List<Program> programsInCart = customerDAO.getProgramsInCart(customer);
+        List<Program> programsInCart = customerDAO.getProgramsInCart(customer);
+
 
             for (Review review : reviews) {
                 Program program = purchasedPrograms.stream().filter(p -> p.getId() == review.getProgramId()).findFirst().get();
                 review.setProgramName(program.getName());
             }
 
-            model.addAttribute("customer", customer);
-            model.addAttribute("purchasedPrograms", purchasedPrograms);
-            model.addAttribute("reviews", reviews);
-            model.addAttribute("programsInCart", programsInCart);
+
+        model.addAttribute("customer", customer);
+        model.addAttribute("purchasedPrograms", purchasedPrograms);
+        model.addAttribute("reviews", reviews);
+        model.addAttribute("programsInCart", programsInCart);
         return "user/customer/index";
     }
 }

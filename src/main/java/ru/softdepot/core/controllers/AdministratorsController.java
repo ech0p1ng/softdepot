@@ -5,11 +5,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import ru.softdepot.core.dao.AdministratorDAO;
-import ru.softdepot.core.dao.TagDAO;
-import ru.softdepot.core.models.Administrator;
-import ru.softdepot.core.models.Tag;
-import ru.softdepot.core.models.User;
+import ru.softdepot.core.dao.*;
+import ru.softdepot.core.models.*;
 
 import java.util.List;
 
@@ -18,10 +15,16 @@ import java.util.List;
 public class AdministratorsController {
     private final AdministratorDAO administratorDAO;
     private final TagDAO tagDAO;
+    private final PurchaseDAO purchaseDAO;
+    private final ProgramDAO programDAO;
+    private final CustomerDAO customerDAO;
 
-    public AdministratorsController(AdministratorDAO administratorDAO, TagDAO tagDAO) {
+    public AdministratorsController(AdministratorDAO administratorDAO, TagDAO tagDAO, PurchaseDAO purchaseDAO, ProgramDAO programDAO, CustomerDAO customerDAO) {
         this.administratorDAO = administratorDAO;
         this.tagDAO = tagDAO;
+        this.purchaseDAO = purchaseDAO;
+        this.programDAO = programDAO;
+        this.customerDAO = customerDAO;
     }
 
     @GetMapping("/id{id}")
@@ -63,6 +66,56 @@ public class AdministratorsController {
         }
 
         return "user/admin/categories";
+    }
+
+
+    @GetMapping("/id{id}/purchases")
+    public String getAllPurchases(@PathVariable("id") int id, Model model) {
+        if (CurrentUser.get() != null) {
+            if (CurrentUser.get().getUserType() != User.Type.Administrator)
+                return "redirect:/";
+        }
+        else return "redirect:/";
+
+        List<Purchase> purchases = purchaseDAO.getAll();
+
+        for (Purchase purchase : purchases) {
+            Program program = null;
+            Customer customer = null;
+            try {
+                program = programDAO.getById(purchase.getProgramId());
+            } catch (Exception e) {
+                e.printStackTrace();
+                continue;
+            }
+
+            try {
+                customer = customerDAO.getById(purchase.getCustomerId());
+            } catch (Exception e) {
+                e.printStackTrace();
+                continue;
+            }
+
+
+            try {
+                Administrator admin = administratorDAO.getById(id);
+                model.addAttribute("admin", admin);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+            purchase.setCustomerName(customer.getName());
+            purchase.setCustomerLink("/customer/id" + customer.getId());
+
+            purchase.setProgramName(program.getName());
+            purchase.setProgramLink("/program/id" + program.getId());
+
+        }
+
+        model.addAttribute("purchases", purchases);
+
+
+        return "user/admin/purchases";
     }
 
 }
