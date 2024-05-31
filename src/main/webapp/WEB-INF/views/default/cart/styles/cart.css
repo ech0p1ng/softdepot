@@ -92,7 +92,7 @@
     width: 40px;
     background-color: darkred;
     margin: 10px;
-    background-image: url("/default/styles/svg/cross-black.svg");
+    background-image: url("/default/styles/svg/cross-white.svg");
     background-size: 30px 30px;
     background-position: center;
 }

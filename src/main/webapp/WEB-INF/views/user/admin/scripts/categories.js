@@ -1,14 +1,3 @@
-function get_tag_row() {
-    return ''+
-        '<div class="category-row">'+
-        '    <input type="text" class="category-name"/>'+
-        '    <div class="category-row-buttons">'+
-        '        <button class="button save-button" onClick="save_tag(event)"></button>'+
-        '        <button class="button delete-button" onClick="delete_tag(event)"></button>'+
-        '    </div>'+
-        '</div>';
-}
-
 function get_tag_row(tag_name, tag_id) {
     return ''+
         '<div class="category-row" tag-id="'+tag_id+'">'+

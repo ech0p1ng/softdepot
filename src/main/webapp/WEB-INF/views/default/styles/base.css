@@ -106,7 +106,8 @@ header img {
     background-position: center;
 }
 
-.button:hover, #main-button:hover {
+.button:hover,
+#main-button:hover {
     cursor: pointer;
     background-color: var(--bg-no-opacity);
 }
@@ -159,4 +160,17 @@ main {
     margin-left: auto;
     margin-right: auto;
     padding-top: 60px;
+}
+
+/************************ other ************************/
+.button {
+    background-size: 30px 30px;
+    background-repeat: no-repeat;
+    background-position: center;
+    color: var(--text-color);
+    font-size: 14px;
+}
+
+.close-button:hover {
+    background-color: red;
 }
