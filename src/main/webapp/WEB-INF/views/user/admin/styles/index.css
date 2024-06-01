@@ -55,6 +55,7 @@ main {
     border-radius: 10px;
     display: flex;
     justify-content: space-between;
+    margin-top: 10px;
 }
 
 .category-row .category-name {
@@ -68,9 +69,9 @@ main {
     font-size: 14px;
 }
 
-.content :not(:first-child, .button, .category-row-buttons) {
+/* .content :not(:first-child, .button, .category-row-buttons) {
     margin-top: 10px;
-}
+} */
 
 .category-row-buttons .button {
     height: 40px;
@@ -104,6 +105,73 @@ main {
     height: 40px;
 }
 
+/* ПРОГРАММЫ*/
+#admin-games-list {
+    height: calc(80%);
+    border-radius: 10px;
+}
+
+.admin-game-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    height: 80px;
+    width: 100%;
+    background-color: var(--bg-opacity);
+    border-radius: 10px;
+    transition: background-color 0.3s ease-in-out;
+    margin-top: 10px;
+}
+
+.admin-game-row:hover {
+    background-color: var(--bg-no-opacity);
+    cursor: pointer;
+}
+
+.admin-game-remove {
+    height: 40px;
+    width: 40px;
+    background-color: darkred;
+    margin: 10px;
+    background-image: url("/default/styles/svg/cross-white.svg");
+    background-size: 30px 30px;
+    background-position: center;
+}
+
+.admin-game-remove:hover {
+    background-color: red;
+}
+
+.admin-game-buttons {
+    display: flex;
+    flex-direction: row;
+    border-radius: 10px;
+    background-color: var(--bg-color2);
+    height: 60px;
+    align-items: center;
+    margin-right: 10px;
+    /* width: 150px; */
+    justify-content: space-between;
+}
+
+.preview {
+    border-radius: 10px 0 0 10px;
+    height: 100%;
+}
+
+.admin-game-description {
+    /* width: 100%; */
+    /*display: flex;*/
+    align-content: center;
+    padding: 10px;
+    height: 100%;
+    flex: 1;
+    text-decoration: none;
+    color: var(--text-color);
+}
+
 /* ЗАКАЗЫ */
 .purchase-row {
     width: 100%;
@@ -112,6 +180,10 @@ main {
     display: flex;
     justify-content: space-around;
     background-color: var(--bg-opacity);
+}
+
+.purchases-rows .purchase-row {
+    margin-top: 10px;
 }
 
 #purchase-header {
@@ -132,4 +204,113 @@ main {
 
 .purchase-row :not(:last-child) {
     border-right: 1px solid var(--text-color);
+}
+
+.edit-button {
+    height: 40px;
+    width: 40px;
+    margin: 10px;
+    margin-right: 0;
+}
+
+/* ПРОГРАММЫ */
+.add-program-form-bg {
+    background-color: rgba(0, 0, 0, 0.5);
+    position: absolute;
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    z-index: 99999;
+    visibility: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.add-program-form {
+    background-color: var(--bg-color2);
+    max-height: 80%;
+    overflow: auto;
+    width: 50%;
+    border-radius: 10px;
+    padding: 10px;
+
+    -ms-overflow-style: none; /* IE и Edge */
+    scrollbar-width: none; /* Firefox */
+}
+
+.add-program-form::-webkit-scrollbar {
+    display: none;
+}
+
+.form-header {
+    height: 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.form-header span {
+    font-size: 16pt;
+    margin-top: 0;
+}
+
+.close-button {
+    height: 40px;
+    width: 40px;
+}
+
+.add-program-form textarea,
+#form-program-name {
+    min-width: calc(100% - 20px);
+    max-width: calc(100% - 20px);
+}
+
+p {
+    margin-top: 10px;
+    margin-bottom: 0;
+}
+
+.add-program-form input[type="text"],
+.add-program-form input[type="number"],
+.add-program-form textarea,
+.add-program-form select {
+    background-color: var(--bg-color);
+    border-radius: 10px;
+    padding: 10px;
+    border: none;
+    color: var(--text-color);
+    font-size: 14px;
+}
+
+.program-tag {
+    width: 100%;
+}
+
+.add-tag {
+    width: 100%;
+    padding: 10px;
+    color: var(--text-color);
+    margin-top: 10px;
+}
+
+.submit {
+    width: 100%;
+    padding: 10px;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    /*скрыть стрелки у инпута цены*/
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type="number"] {
+    /*скрыть стрелки у инпута цены*/
+    -moz-appearance: textfield;
+    appearance: textfield;
+    margin: 0;
 }

@@ -176,6 +176,22 @@ public class ProgramsController {
 //        model.addAttribute("totalCost", totalCost);
     }
 
+    @GetMapping("/get-all")
+    public ResponseEntity<List<Program>> getAll() {
+        responseHeaders.setContentType(MediaType.APPLICATION_JSON);
+        responseHeaders.set("Content-Type", "application/json;charset=UTF-8");
+        List<Program> programs = programDAO.getAll();
+        return ResponseEntity.ok(programs);
+    }
+
+    @PostMapping("/id{id}/delete")
+    public ResponseEntity<?> deleteProgram(Model model, @PathVariable("id") int programId) {
+        responseHeaders.setContentType(MediaType.TEXT_PLAIN);
+        responseHeaders.set("Content-Type", "text/plain;charset=UTF-8");
+        programDAO.delete(programId);
+        return ResponseEntity.ok().build();
+    }
+
     private void uploadFile(String path, String fileName, MultipartFile file) throws IOException {
         if (!file.isEmpty()) {
             File dir = new File(path);

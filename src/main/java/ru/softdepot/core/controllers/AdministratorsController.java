@@ -57,8 +57,8 @@ public class AdministratorsController {
 
         try {
             Administrator admin = administratorDAO.getById(id);
-            List<Tag> tags = tagDAO.getAll();
             model.addAttribute("admin", admin);
+            List<Tag> tags = tagDAO.getAll();
             model.addAttribute("tags", tags);
 
         } catch (Exception e) {
@@ -118,4 +118,29 @@ public class AdministratorsController {
         return "user/admin/purchases";
     }
 
+    @GetMapping("/id{id}/programs")
+    public String getAllPrograms(@PathVariable("id") int id, Model model) {
+
+        if (CurrentUser.get() != null) {
+            if (CurrentUser.get().getUserType() != User.Type.Administrator)
+                return "redirect:/";
+        }
+        else return "redirect:/";
+
+        Administrator admin = null;
+
+        try {
+            admin = administratorDAO.getById(id);
+            model.addAttribute("admin", admin);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+
+        List<Program> programs = programDAO.getAll();
+        model.addAttribute("programs", programs);
+
+
+        return "user/admin/programs";
+    }
 }
