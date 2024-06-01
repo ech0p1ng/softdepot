@@ -2,12 +2,12 @@ package ru.softdepot.core.controllers;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import ru.softdepot.core.dao.*;
 import ru.softdepot.core.models.*;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @Controller
@@ -142,5 +142,21 @@ public class AdministratorsController {
 
 
         return "user/admin/programs";
+    }
+
+    @PostMapping("/id{id}/programs/new")
+    public String addGame(
+            @RequestParam("name") String name,
+            @RequestParam("short-description") String shortDescription,
+            @RequestParam("full-description") String fullDescription,
+            @RequestParam("price") BigDecimal price,
+            @RequestParam("categories") String categories,
+            @RequestPart("logo") MultipartFile logo,
+            @RequestPart("header") MultipartFile header,
+            @RequestPart("screenshots") MultipartFile[] screenshots,
+            Model model) {
+
+
+        return "redirect:/administrator/id{id}/programs";
     }
 }

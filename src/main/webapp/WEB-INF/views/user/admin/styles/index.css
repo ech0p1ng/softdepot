@@ -231,17 +231,22 @@ main {
 
 .add-program-form {
     background-color: var(--bg-color2);
-    max-height: 80%;
-    overflow: auto;
+    height: 538px;
     width: 50%;
     border-radius: 10px;
     padding: 10px;
-
-    -ms-overflow-style: none; /* IE и Edge */
-    scrollbar-width: none; /* Firefox */
 }
 
-.add-program-form::-webkit-scrollbar {
+.forms {
+    margin-top: 10px;
+    overflow: auto;
+    max-height: calc(538px - 50px);
+    -ms-overflow-style: none; /* IE и Edge */
+    scrollbar-width: none; /* Firefox */
+    border-radius: 10px;
+}
+
+.forms::-webkit-scrollbar {
     display: none;
 }
 
@@ -268,9 +273,26 @@ main {
     max-width: calc(100% - 20px);
 }
 
-p {
+/* p {
     margin-top: 10px;
     margin-bottom: 0;
+} */
+p {
+    margin: 0;
+    margin-bottom: 10px;
+}
+
+#categories-selector {
+    margin: 0;
+}
+
+#categories-selector :last-child {
+    margin: 0;
+}
+
+.program-tag {
+    margin: 0;
+    margin-bottom: 10px;
 }
 
 .add-program-form input[type="text"],
@@ -290,7 +312,7 @@ p {
 }
 
 .add-tag {
-    width: 100%;
+    width: calc(100% - 20px);
     padding: 10px;
     color: var(--text-color);
     margin-top: 10px;
