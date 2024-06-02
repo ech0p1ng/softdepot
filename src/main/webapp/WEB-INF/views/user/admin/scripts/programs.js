@@ -132,3 +132,73 @@ function add_categories(selector_id) {
 
     selector.append(options.clone());
 }
+
+/* ФОРМА ДОБАВЛЕНИЯ ИГРЫ*/
+function add_game(event) {
+    let tags_id = [];
+    for (let selector_id = 1; selector_id <= selectors_count; selector_id++) {
+        let id = $('#add_game_info_form select[selector-id="'+selector_id+'"]').val();
+        if (id !== undefined) {
+            tags_id.push(id);
+        }
+
+    }
+
+    let game_info = {
+        name: $('#add_game_info_form .program-name').val(),
+        short_description: $('#add_game_info_form .short-description').val(),
+        full_description: $('#add_game_info_form .full-description').val(),
+        price: $('#add_game_info_form .price').val(),
+        tags: tags_id
+    }
+
+    let game_files = {
+        logo: $('#logo-img-upload').prop('files')[0],
+        header: $('#header-img-upload').prop('files')[0],
+        screenshots: $('#screenshots-upload').prop('files')
+    }
+
+    let form_data = new FormData();
+    form_data.append('logo', game_files.logo);
+    form_data.append('header', game_files.header);
+    for (let i = 0; i < game_files.screenshots.length; i++) {
+        form_data.append('screenshots[]', game_files.screenshots[i]);
+    }
+
+    post_game(game_info, form_data);
+}
+
+function post_game(game_info, form_data) {
+    console.log(game_info, form_data);
+    return new Promise((resolve, reject) => {
+       $.ajax({
+           type: 'POST',
+           url: '/administrator/program/new',
+           data: game_info,
+           success: function (game_id) {
+               add_game_files(game_id, form_data)
+           },
+           error: function () {
+                alert("Программа не добавлена");
+           }
+       })
+    });
+}
+
+
+function add_game_files(game_id, form_data) {
+    $.ajax({
+        type: 'POST',
+        url: '/administrator/program/id' + game_id + '/add-info',
+        processData: false, // отключение обработки данных jQuery (необходимо для отправки объекта FormData)
+        contentType: false, // отключение заголовка Content-Type (необходимо для отправки объекта FormData)
+        data: form_data,
+        // contentType: 'multipart/form-data', // отключение заголовка Content-Type (необходимо для отправки объекта FormData)
+        success: function () {
+            alert("Программа добавлена!");
+        },
+        error: function () {
+            alert("Ошибка добавления изображений")
+        }
+    });
+}

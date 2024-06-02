@@ -69,16 +69,16 @@
                         <div class="forms">                        
                             <form method="post" id="add_game_info_form">
                                 <p>
-                                    <input id="form-program-name" type="text" placeholder="Название программы" minlength="3" />
+                                    <input class="program-name" type="text" placeholder="Название программы" minlength="3" />
                                 </p>
                                 <p>
-                                    <textarea placeholder="Краткое описание" maxlength="400"></textarea>
+                                    <textarea class="short-description" placeholder="Краткое описание" maxlength="400"></textarea>
                                 </p>
                                 <p>
-                                    <textarea placeholder="Полное описание" maxlength="15000"></textarea>
+                                    <textarea class="full-description" placeholder="Полное описание" maxlength="15000"></textarea>
                                 </p>
                                 <p>
-                                    <input id="price" type="number" min="0" placeholder="Стоимость" />
+                                    <input class="price" id="price" type="number" min="0" placeholder="Стоимость" />
                                     <label>руб.</label>
                                 </p>
                                 <p id="categories-selector">
@@ -91,7 +91,7 @@
                                     <div class="button add-tag">Добавить категорию</div>
                                 </p>
                             </form>
-                            <form method="post" id="add_game_files_form">
+                            <form method="post" id="add_game_files_form" enctype="multipart/form-data">
                                 <p>
                                     <label for="logo-img-upload">Логотип</label>
                                     <input class="upload" type="file" id="logo-img-upload" accept="image/png" />

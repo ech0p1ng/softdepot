@@ -53,5 +53,9 @@ public class DegreeOfBelonging {
         if (degreeValue >= 0 && degreeValue <= 10) {
             this.degreeOfBelongingValue = degreeValue;
         }
+        else if (degreeValue > 10)
+            this.degreeOfBelongingValue = 10;
+        else
+            this.degreeOfBelongingValue = 0;
     }
 }

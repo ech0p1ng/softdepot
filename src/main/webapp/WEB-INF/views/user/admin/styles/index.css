@@ -268,7 +268,7 @@ main {
 }
 
 .add-program-form textarea,
-#form-program-name {
+.add-program-form .program-name {
     min-width: calc(100% - 20px);
     max-width: calc(100% - 20px);
 }

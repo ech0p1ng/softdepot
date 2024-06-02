@@ -25,6 +25,8 @@ function getScoreColor(score) {
 window.onload = () => {
     //замена у тега score цвета в зависимости от оценки
     $("#score").css("color", getScoreColor($("#score").html()));
-    $(".score").css("color", getScoreColor($(".score").html()));
+    $(".score").each(function ()  {
+        $(this).css('color', getScoreColor($(this).html()));
+    })
 };
 
