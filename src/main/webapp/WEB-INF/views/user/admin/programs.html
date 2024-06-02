@@ -40,15 +40,15 @@
                 <ul>
                     <a class="button" th:href="@{/administrator/id{id}/purchases(id=${admin.getId()})}">Заказы</a>
                 </ul>
-<!--                <ul>-->
-<!--                    <a class="button" th:href="@{/administrator/id{id}/customers(id=${admin.getId()})}">Покупатели</a>-->
-<!--                </ul>-->
-<!--                <ul>-->
-<!--                    <a class="button" th:href="@{/administrator/id{id}/developers(id=${admin.getId()})}">Разработчики</a>-->
-<!--                </ul>-->
-<!--                <ul>-->
-<!--                    <a class="button" th:href="@{/administrator/id{id}/admins(id=${admin.getId()})}">Администраторы</a>-->
-<!--                </ul>-->
+                <!--                <ul>-->
+                <!--                    <a class="button" th:href="@{/administrator/id{id}/customers(id=${admin.getId()})}">Покупатели</a>-->
+                <!--                </ul>-->
+                <!--                <ul>-->
+                <!--                    <a class="button" th:href="@{/administrator/id{id}/developers(id=${admin.getId()})}">Разработчики</a>-->
+                <!--                </ul>-->
+                <!--                <ul>-->
+                <!--                    <a class="button" th:href="@{/administrator/id{id}/admins(id=${admin.getId()})}">Администраторы</a>-->
+                <!--                </ul>-->
             </li>
             <div class="main-panel">
                 <div class="header">
@@ -56,53 +56,58 @@
                 </div>
                 <div class="content">
                     <div class="button add-category-button" onclick="add_program_from_admin()">Добавить программу</div>
-                    <div id="admin-games-list">
-
-                    </div>
+                    <div id="admin-games-list"></div>
                 </div>
 
-<!--                форма редактирования/добавления программы-->
+                <!--                форма редактирования/добавления программы-->
                 <div class="add-program-form-bg">
-                    <form class="add-program-form" method="post">
+                    <div class="add-program-form">
                         <div class="form-header">
                             <span>Игра</span>
                             <div class="close-button button" onclick="close_form()"></div>
                         </div>
-                        <p>
-                            <input id="form-program-name" type="text" placeholder="Название программы" minlength="3" />
-                        </p>
-                        <p>
-                            <textarea placeholder="Краткое описание" maxlength="400"></textarea>
-                        </p>
-                        <p>
-                            <textarea placeholder="Полное описание" maxlength="15000"></textarea>
-                        </p>
-                        <p>
-                            <input id="price" type="number" min="0" placeholder="Стоимость" />
-                            <label>руб.</label>
-                        </p>
-                        <p>
-                            <select class="program-tag">
-                                <option value="Гонки">Гонки</option>
-                            </select>
-                            <button class="button add-tag">Добавить категорию</button>
-                        </p>
-                        <p>
-                            <label for="logo-img-upload">Логотип</label>
-                            <input class="upload" type="file" id="logo-img-upload" accept="image/png" />
-                        </p>
-                        <p>
-                            <label for="header-img-upload">Заголовочное изображение</label>
-                            <input class="upload" type="file" id="header-img-upload" accept="image/jpeg" />
-                        </p>
-                        <p>
-                            <label for="screenshots-upload">Скриншоты</label>
-                            <input class="upload" type="file" id="screenshots-upload" multiple />
-                        </p>
-                        <p>
-                            <input class="button submit" type="submit" value="Добавить" />
-                        </p>
-                    </form>
+                        <div class="forms">                        
+                            <form method="post" id="add_game_info_form">
+                                <p>
+                                    <input class="program-name" type="text" placeholder="Название программы" minlength="3" />
+                                </p>
+                                <p>
+                                    <textarea class="short-description" placeholder="Краткое описание" maxlength="400"></textarea>
+                                </p>
+                                <p>
+                                    <textarea class="full-description" placeholder="Полное описание" maxlength="15000"></textarea>
+                                </p>
+                                <p>
+                                    <input class="price" id="price" type="number" min="0" placeholder="Стоимость" />
+                                    <label>руб.</label>
+                                </p>
+                                <p id="categories-selector">
+                                    <template id="categories-container">
+                                        <option value="1">Первый</option>
+                                        <option value="2">Второй</option>
+                                        <option value="3">Третий</option>
+                                    </template>
+                                    <select class="program-tag" selector-id="1"></select>
+                                    <div class="button add-tag">Добавить категорию</div>
+                                </p>
+                            </form>
+                            <form method="post" id="add_game_files_form" enctype="multipart/form-data">
+                                <p>
+                                    <label for="logo-img-upload">Логотип</label>
+                                    <input class="upload" type="file" id="logo-img-upload" accept="image/png" />
+                                </p>
+                                <p>
+                                    <label for="header-img-upload">Заголовочное изображение</label>
+                                    <input class="upload" type="file" id="header-img-upload" accept="image/jpeg" />
+                                </p>
+                                <p>
+                                    <label for="screenshots-upload">Скриншоты</label>
+                                    <input class="upload" type="file" id="screenshots-upload" multiple />
+                                </p>
+                            </form>
+                            <button class="button submit" onclick="add_game(event)">Добавить</button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </main>

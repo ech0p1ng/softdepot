@@ -26,7 +26,7 @@ public class Program {
     private MultipartFile linuxInstaller;
     private MultipartFile macosInstaller;
     private MultipartFile headerImg;
-    private MultipartFile[] screenshots;
+    private List<MultipartFile> screenshots;
     private MultipartFile logo;
 
     private String headerUrl;
@@ -43,10 +43,10 @@ public class Program {
         setName(name);
     }
 
-    public Program(String name, BigDecimal price, String description,
+    public Program(String name, BigDecimal price, String fullDescription,
                    int developerId, String shortDescription, List<Tag> tags) {
         this.price = price;
-        this.fullDescription = description;
+        this.fullDescription = fullDescription;
         this.developerId = developerId;
         this.shortDescription = shortDescription;
         this.tags = tags;
@@ -73,7 +73,7 @@ public class Program {
     public Program(String name, String shortDescription, String fullDescription,
                    BigDecimal price, MultipartFile logo, MultipartFile winInstaller,
                    MultipartFile linuxInstaller, MultipartFile macosInstaller,
-                   MultipartFile headerImg, MultipartFile[] screenshots) {
+                   MultipartFile headerImg, List<MultipartFile> screenshots) {
         setName(name);
         setShortDescription(shortDescription);
         setFullDescription(fullDescription);
@@ -258,11 +258,11 @@ public class Program {
         this.headerImg = headerImg;
     }
 
-    public MultipartFile[] getScreenshots() {
+    public List<MultipartFile> getScreenshots() {
         return screenshots;
     }
 
-    public void setScreenshots(MultipartFile[] screenshots) {
+    public void setScreenshots(List<MultipartFile> screenshots) {
         this.screenshots = screenshots;
     }
 

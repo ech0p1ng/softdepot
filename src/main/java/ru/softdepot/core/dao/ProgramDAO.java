@@ -36,14 +36,15 @@ public class ProgramDAO implements DAO<Program> {
         if (!exists(program.getName(), program.getDeveloperId())) {
             try {
                 PreparedStatement statement = connection.prepareStatement(
-                        "INSERT INTO program (program_name, price, description, developer_id) " +
-                                "VALUES (?, ?, ?, ?) RETURNING id"
+                        "INSERT INTO program (program_name, price, description, developer_id, short_description) " +
+                                "VALUES (?, ?, ?, ?, ?) RETURNING id"
                 );
 
                 statement.setString(1, program.getName());
                 statement.setBigDecimal(2, program.getPrice());
                 statement.setString(3, program.getFullDescription());
                 statement.setInt(4, program.getDeveloperId());
+                statement.setString(5, program.getShortDescription());
 
 
                 ResultSet resultSet = statement.executeQuery();
