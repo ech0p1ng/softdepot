@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <dataSource name="softdepot@localhost">
   <database-model serializer="dbm" dbms="POSTGRES" family-id="POSTGRES" format-version="4.52">
+<<<<<<< HEAD
+    <root id="1"/>
+=======
     <root id="1">
       <DateStyle>mdy</DateStyle>
       <Grants>5||-9223372036854775808|c|G
@@ -794,6 +797,7 @@ false Z
 false Zulu
 </TimeZones>
     </root>
+>>>>>>> 2eb0dddb1454a08434691f0113b1c8491ad15c02
     <database id="2" parent="1" name="first_db">
       <ObjectId>41813</ObjectId>
       <OwnerName>postgres</OwnerName>

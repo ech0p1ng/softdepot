@@ -55,7 +55,8 @@ function add_program_from_admin() {
 
 function remove_program(event) {
     let program_id = event.currentTarget.getAttribute("program-id");
-    let program_name = $(".admin-game-title[program-id=" + program_id + "]");
+    console.log("Program id="+program_id);
+    let program_name = $(".admin-game-title[program-id=" + program_id + "]").html();
 
     let remove_program_answer = confirm('Вы действительно хотите удалить "' + program_name + '"?');
     if (remove_program_answer) {

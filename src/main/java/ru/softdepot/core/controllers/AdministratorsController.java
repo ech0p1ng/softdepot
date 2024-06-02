@@ -2,7 +2,9 @@ package ru.softdepot.core.controllers;
 
 import jakarta.servlet.ServletContext;
 
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -27,12 +29,18 @@ public class AdministratorsController {
     private final ProgramDAO programDAO;
     private final CustomerDAO customerDAO;
 
+    HttpHeaders responseHeaders;
+
     public AdministratorsController(AdministratorDAO administratorDAO, TagDAO tagDAO, PurchaseDAO purchaseDAO, ProgramDAO programDAO, CustomerDAO customerDAO) {
         this.administratorDAO = administratorDAO;
         this.tagDAO = tagDAO;
         this.purchaseDAO = purchaseDAO;
         this.programDAO = programDAO;
         this.customerDAO = customerDAO;
+
+        responseHeaders = new HttpHeaders();
+        responseHeaders.setContentType(MediaType.TEXT_PLAIN);
+        responseHeaders.set("Content-Type", "text/plain;charset=UTF-8");
     }
 
     @GetMapping("/id{id}")
@@ -233,6 +241,14 @@ public class AdministratorsController {
         }
 
         programDAO.update(program);
+        return ResponseEntity.ok().build();
+    }
+
+    @PostMapping("/id{id}/program/id{program_id}/delete")
+    public ResponseEntity<?> deleteProgram(Model model, @PathVariable("program_id") int programId, @PathVariable("id") int id) {
+        responseHeaders.setContentType(MediaType.TEXT_PLAIN);
+        responseHeaders.set("Content-Type", "text/plain;charset=UTF-8");
+        programDAO.delete(programId);
         return ResponseEntity.ok().build();
     }
 }
