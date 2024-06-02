@@ -9,27 +9,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-<<<<<<< HEAD
-    <list default="true" id="8053af59-3b55-4a7c-9bf0-f47b7e7a3446" name="Changes" comment="" />
-=======
-    <list default="true" id="8053af59-3b55-4a7c-9bf0-f47b7e7a3446" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/user/admin/categories.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/user/admin/categories.html" afterDir="false" />
-    </list>
->>>>>>> b2048aaf139a1e5db4341f9a26305d9771d7c851
+    <list default="true" id="9f2902f7-a423-40f0-ad18-13bda093788c" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
-  </component>
-  <component name="FileTemplateManagerImpl">
-    <option name="RECENT_TEMPLATES">
-      <list>
-        <option value="CSS File" />
-        <option value="JavaScript File" />
-        <option value="Class" />
-      </list>
-    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -45,10 +29,10 @@
     <option name="FILTER_DEBUG" value="true" />
     <option name="CUSTOM_FILTER" />
   </component>
-  <component name="ProjectColorInfo">{
-  &quot;associatedIndex&quot;: 3
-}</component>
-  <component name="ProjectId" id="2h8ZlHHpWAPZFnLBQdFFjrvNNE5" />
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 2
+}]]></component>
+  <component name="ProjectId" id="2hLDEfPkN8JRNBolCgNA5pcZmc4" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -56,39 +40,14 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    "Node.js.cart.js.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "Tomcat Server.Tomcat 10.1.23.executor": "Run",
-    "git-widget-placeholder": "master",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "D:/Проекты программирование/Мои проекты/Java/Spring MVC/softdepot/softdepot/src/main/webapp/WEB-INF/views/user/admin",
-    "list.type.of.created.stylesheet": "CSS",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-<<<<<<< HEAD
-=======
-    "project.structure.last.edited": "Project",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0",
->>>>>>> b2048aaf139a1e5db4341f9a26305d9771d7c851
-    "settings.editor.selected.configurable": "project.propVCSSupport.DirectoryMappings",
-    "vue.rearranger.settings.migration": "true"
-  },
-  "keyToStringList": {
-    "DatabaseDriversLRU": [
-      "postgresql"
-    ]
+    "settings.editor.selected.configurable": "preferences.keymap"
   }
 }]]></component>
-  <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="D:\Проекты программирование\Мои проекты\Java\Spring MVC\softdepot\softdepot\src\main\webapp\WEB-INF\views\user\admin" />
-    </key>
-  </component>
   <component name="RunManager">
     <configuration name="Tomcat 10.1.23" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 10.1.23" ALTERNATIVE_JRE_ENABLED="false" nameIsGenerated="true">
       <option name="UPDATING_POLICY" value="restart-server" />
@@ -100,7 +59,7 @@
         </artifact>
       </deployment>
       <server-settings>
-        <option name="BASE_DIRECTORY_NAME" value="5e51f3e9-f76e-4d1a-b0e1-90b163f1cff7" />
+        <option name="BASE_DIRECTORY_NAME" value="b6694421-31d8-40eb-8f26-0d21c044ff24" />
       </server-settings>
       <predefined_log_file enabled="true" id="Tomcat" />
       <predefined_log_file enabled="true" id="Tomcat Catalina" />
@@ -108,7 +67,7 @@
       <predefined_log_file id="Tomcat Host Manager" />
       <predefined_log_file id="Tomcat Localhost Access" />
       <RunnerSettings RunnerId="Debug">
-        <option name="DEBUG_PORT" value="52104" />
+        <option name="DEBUG_PORT" value="62764" />
       </RunnerSettings>
       <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Cover">
         <option name="USE_ENV_VARIABLES" value="true" />
@@ -187,24 +146,7 @@
     </attachedChunks>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
-  <component name="SvnConfiguration">
-    <configuration>C:\Users\oselish\AppData\Roaming\Subversion</configuration>
-  </component>
   <component name="TaskManager">
-    <task active="true" id="Default" summary="Default task">
-      <changelist id="8053af59-3b55-4a7c-9bf0-f47b7e7a3446" name="Changes" comment="" />
-      <created>1716977815455</created>
-      <option name="number" value="Default" />
-      <option name="presentableId" value="Default" />
-      <updated>1716977815455</updated>
-<<<<<<< HEAD
-      <workItem from="1716977817654" duration="2844000" />
-      <workItem from="1717025241251" duration="32000" />
-=======
-      <workItem from="1716977817654" duration="3600000" />
-      <workItem from="1717064343814" duration="20316000" />
->>>>>>> b2048aaf139a1e5db4341f9a26305d9771d7c851
-    </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
