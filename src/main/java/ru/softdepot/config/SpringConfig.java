@@ -92,9 +92,12 @@ public class SpringConfig implements WebMvcConfigurer {
         converters.add(new StringHttpMessageConverter());
     }
 
-    @Bean
+    @Bean(name = "multipartResolver")
     public MultipartResolver getMultipartResolver() {
         return new StandardServletMultipartResolver();
+//        CommonsMultipartResolver multipartResolver = new CommonsMultipartResolver();
+//        multipartResolver.setMaxUploadSize(100000);
+//        return multipartResolver;
     }
 
     @Bean

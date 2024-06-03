@@ -160,6 +160,14 @@ public class AdministratorsController {
         return "user/admin/programs";
     }
 
+    @PostMapping("/id{id}/program/id{program_id}/delete")
+    public ResponseEntity<?> deleteProgram(Model model, @PathVariable("program_id") int programId, @PathVariable("id") int id) {
+        responseHeaders.setContentType(MediaType.TEXT_PLAIN);
+        responseHeaders.set("Content-Type", "text/plain;charset=UTF-8");
+        programDAO.delete(programId);
+        return ResponseEntity.ok().build();
+    }
+
     @PostMapping("/program/new")
     public ResponseEntity<?> addGame(
             @RequestParam("name") String name,
@@ -209,9 +217,9 @@ public class AdministratorsController {
     @PostMapping("/program/id{program-id}/add-info")
     public ResponseEntity<?> addInfoToGame(
             @PathVariable("program-id") int programId,
-            @RequestPart("logo") MultipartFile logo,
-            @RequestPart("header") MultipartFile header,
-            @RequestPart("screenshots") List<MultipartFile> screenshots,
+            @RequestParam("logo") MultipartFile logo,
+            @RequestParam("header") MultipartFile header,
+            @RequestParam("screenshots") List<MultipartFile> screenshots,
             ServletContext servletContext) {
         Program program = null;
 
@@ -241,14 +249,6 @@ public class AdministratorsController {
         }
 
         programDAO.update(program);
-        return ResponseEntity.ok().build();
-    }
-
-    @PostMapping("/id{id}/program/id{program_id}/delete")
-    public ResponseEntity<?> deleteProgram(Model model, @PathVariable("program_id") int programId, @PathVariable("id") int id) {
-        responseHeaders.setContentType(MediaType.TEXT_PLAIN);
-        responseHeaders.set("Content-Type", "text/plain;charset=UTF-8");
-        programDAO.delete(programId);
         return ResponseEntity.ok().build();
     }
 }
